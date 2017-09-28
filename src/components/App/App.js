@@ -26,13 +26,13 @@ class App extends Component {
         const { rotation, breaking } = this.props;
         return (
             <div className="App">
+                <UserList />
                 <CountDownWrapper />
                 <Notification />
                 { breaking && <Intermezzo /> }
                 <SettingsView />
                 <div><h4>Current rotation: {rotation} </h4></div>
                 <button onClick={this.onNextUser}>Nästa</button>
-                <UserList />
             </div>
         );
     }

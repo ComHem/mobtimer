@@ -1,4 +1,18 @@
+.user-list {
+    list-style: none;
+    display: flex;
+    flex-direction: row;
+    justify-content: center;
+    padding: 0;
+}
+
 .user-list__user {
+    display: flex;
+    width: 50px;
+    height: 50px;
+    border-radius: 50%;
+    border: 1px solid gold;
+    margin: 10px;
 }
 
 .user-list__user--inactive {
@@ -7,4 +21,13 @@
 
 .user-list__user--current {
     color: #0f0;
+}
+
+.user-list__user__name {
+    align-self: flex-end;
+    margin: 0 auto;
+}
+
+.user-list__user__buttons--disable {
+    display: none;
 }

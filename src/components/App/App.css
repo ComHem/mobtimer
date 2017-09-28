@@ -23,6 +23,17 @@
     color: green;
 }
 
+.App__clock-wrapper {
+  width: 300px;
+  height: 300px;
+  position: relative;
+  margin: 0 auto;
+}
+
+.react-countdown-clock {
+  position: absolute;
+  left: 0;
+}
 @keyframes App-logo-spin {
   from { transform: rotate(0deg); }
   to { transform: rotate(360deg); }

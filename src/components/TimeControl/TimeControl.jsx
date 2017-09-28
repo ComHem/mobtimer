@@ -64,12 +64,10 @@ class TimeControl extends React.Component {
     render() {
         const { running } = this.props;
         return (<div>
-            <div>
-                {running
-                    ? (<button onClick={this.onPauseTimer}>Paus</button>)
-                    : (<button onClick={this.onStartTimer}>Start</button>)}
-                <button onClick={this.onStopTimer}>Stop</button>
-            </div>
+            {running
+                ? (<button onClick={this.onPauseTimer}>Paus</button>)
+                : (<button onClick={this.onStartTimer}>Start</button>)}
+            <button onClick={this.onStopTimer}>Stop</button>
         </div>);
     }
 }

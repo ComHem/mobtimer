@@ -14,15 +14,14 @@ class SettingsView extends React.Component {
         }
     }
     render () {
-        const { sessionLength, breakInterval, breakTime } = this.props;
-        const fieldNames = { sessionLength, breakInterval, breakTime };
+        const { className='', fields } = this.props;
         return (
-            <div className="SettingsView">
-                {Object.keys(fieldNames).map((fieldName) => (
+            <div className={`SettingsView ${className}`}>
+                {Object.keys(fields).map((fieldName) => (
                     <div key={fieldName}>
                         <h3>{fieldName}</h3>
                         <input
-                            value={fieldNames[fieldName]}
+                            value={fields[fieldName]}
                             onChange={(event) => this.onChange(fieldName, event.target.value)}
                         />
                     </div>
@@ -34,9 +33,9 @@ class SettingsView extends React.Component {
 }
 
 const mapStateToProps = (state) => ({
-    sessionLength: state.settings.sessionLength,
-    breakInterval: state.settings.breakInterval,
-    breakTime: state.settings.breakTime,
+    fields: {
+        ...state.settings,
+    },
 });
 
 export default connect(mapStateToProps)(SettingsView);

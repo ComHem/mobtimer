@@ -1,5 +1,32 @@
 .App {
+  overflow: hidden;
+}
+
+.App .SimpleTimeView{
   text-align: center;
+  transform: translate3d(0px, 0, 0);
+  transition: transform .3s;
+  position: absolute;
+  width: 100%;
+  height: 100%;
+  overflow: hidden;
+}
+
+.App--pane-open .SimpleTimeView {
+    filter: blur(5px);
+    transform: translate3d(-250px, 0, 0);
+}
+.App-icon {
+    background: none;
+    padding: 0;
+    border: none;
+}
+
+.App-icon figure{
+    width: 20px;
+    height: 20px;
+    /* line-height: 0; */
+    margin: 0;
 }
 
 .App-logo {
@@ -16,6 +43,32 @@
 
 .App-intro {
   font-size: large;
+}
+
+
+.App-settings {
+    position: absolute;
+    width: 500px;
+    background-color: #fff;
+    height: 100vh;
+    transform: translate3d(500px, 0, 0);
+    transition: transform .3s;
+    top: 0;
+    right: 0;
+}
+.App-settings--open {
+    transform: translate3d(0px, 0, 0);
+}
+
+.App-settings-button {
+    position: fixed;
+    top: 0;
+    right: 0;
+    z-index: 1;
+}
+
+.App-settings-button--open::before {
+    content: '';
 }
 
 .app__done {

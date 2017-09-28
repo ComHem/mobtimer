@@ -12,6 +12,11 @@ Todo
 * Local storage
 * Dockerize
 * Fix node config(including server mode)
+* Ljud vid byte
+
+Doing
+* Visuell Timer - Team Bakis
+* Visuell AnvändarKö - Team Bakis
 
 Bonus
   <ul>

@@ -1,4 +1,0 @@
-export const SET_SECONDS_LEFT = 'SET_SECONDS_LEFT';
-export const SET_RUNNING = 'SET_RUNNING';
-export const SET_BREAKING = 'SET_BREAKING';
-export const DECREMENT_SECONDS = 'DECREMENT_SECONDS';

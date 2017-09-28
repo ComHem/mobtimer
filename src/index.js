@@ -4,9 +4,9 @@ import { compose, applyMiddleware, createStore } from 'redux';
 import {persistStore, autoRehydrate} from 'redux-persist'
 import { Provider } from 'react-redux';
 import './index.css';
-import App from './App';
+import App from './components/App/App';
 import registerServiceWorker from './registerServiceWorker';
-import reducers from './reducers';
+import reducers from './redux/reducers';
 
 const store = createStore(
   reducers,

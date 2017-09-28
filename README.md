@@ -1,3 +1,4 @@
+Done
 * Lägg till / ta bort användare
 * Rotation av användare
 * Starta/stoppa tiden
@@ -6,11 +7,13 @@
 * Pauser
 * Variabel pauslängd
 * Notifiera om skifte
+
+Todo
 * Local storage
 * Dockerize
-* Fix node config(including server mode)</li>
-  </ul>
-  <h3>Bonus</h3>
+* Fix node config(including server mode)
+
+Bonus
   <ul>
       <li>Mongo-state</li>
       <li>Keyboard shortcuts</li>

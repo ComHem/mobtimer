@@ -7,7 +7,7 @@ const SimpleTimeView = ({ children, secondsLeft }) => {
     const mins = Math.floor(secondsLeft / 60);
     const secs = secondsLeft % 60;
     return (
-        <div className="SimpleTimeView" >
+        <div className="SimpleTimeView">
             <div className="SimpleTimeView-timer">
                 {`${mins}:${secs < 10 ? '0' : ''}${secs}`}
             </div>

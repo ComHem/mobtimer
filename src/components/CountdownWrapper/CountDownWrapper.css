@@ -1,0 +1,15 @@
+.countdown-wrapper {
+    position: relative;
+}
+
+
+.countdown-wrapper__play-btn {
+    position: absolute;
+    background: url("../../images/play-button.svg") no-repeat;
+    background-size: cover;
+    height: 70px;
+    width: 70px;
+    left: 50%;
+    top: 50%;
+    transform: translateY(-50%) translateX(-40%);
+}

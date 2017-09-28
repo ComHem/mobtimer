@@ -3,6 +3,7 @@
     display: flex;
     flex-direction: row;
     justify-content: center;
+    align-items: baseline;
     padding: 0;
 }
 
@@ -15,19 +16,89 @@
     margin: 10px;
 }
 
+.user-list__container {
+    position: relative;
+}
+
 .user-list__user--inactive {
     color: #ccc;
+    opacity: .45;
 }
 
 .user-list__user--current {
     color: #0f0;
+    -webkit-transform: scale(1.2, 1.2);
+    -moz-transform: scale(1.2, 1.2);
+    -ms-transform: scale(1.2, 1.2);
+    -o-transform: scale(1.2, 1.2);
+    transform: scale(1.2, 1.2);
+    align-self: flex-start;
 }
 
 .user-list__user__name {
     align-self: flex-end;
-    margin: 0 auto;
+    margin: 0 auto -20px;
 }
 
-.user-list__user__buttons--disable {
-    display: none;
+
+.user-list__remove-btn {
+    width: 24px;
+    height: 24px;
+    border-radius: 50%;
+    border: 1px solid gold;
+    background: red url("../../images/cancel.svg") no-repeat center center;
+    box-shadow: none;
+    background-size: 8px;
+    position: absolute;
+    right: 7px;
+    top: 3px;
+    z-index: 2;
+}
+
+.user-list__user-image {
+    background: url("../../images/crown.png") no-repeat;
+    background-size: cover;
+    height: 46px;
+    width: 74px;
+    margin-bottom: -25px;
+    margin-left: -13px;
+    -webkit-transform: rotate(-22deg);
+    -ms-transform: rotate(-22deg);
+    transform: rotate(-22deg);
+    position: relative;
+    z-index: 2;
+}
+
+.user-list__user--0 {
+    background: url("../../images/user0.jpg") no-repeat;
+    background-size: cover;
+}
+
+.user-list__user--1 {
+    background: url("../../images/user1.jpg") no-repeat;
+    background-size: cover;
+}
+
+.user-list__user--2 {
+    background: url("../../images/user2.jpg") no-repeat;
+    background-size: cover;
+}
+
+.user-list__user--3 {
+    background: url("../../images/user3.jpg") no-repeat;
+    background-size: cover;
+}
+
+.user-list__user--4 {
+    background: url("../../images/user4.jpg") no-repeat;
+    background-size: cover;
+}
+
+.user-list__user--5 {
+    background: url("../../images/user5.jpg") no-repeat;
+    background-size: cover;
+}
+
+.pointer {
+    cursor: pointer;
 }

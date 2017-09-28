@@ -1,8 +1,7 @@
 import React from 'react';
-import { connect } from 'react-redux';
+import {connect} from 'react-redux';
 import './UserList.css';
-import { addUser, removeUser, toggleUserSleeping } from '../../redux/user/user_actions';
-import { CONST__NEW_USER_NAME } from '../../redux/user/user_types';
+import {addUser, removeUser, toggleUserSleeping} from '../../redux/user/user_actions';
 
 class UserList extends React.Component {
 
@@ -26,28 +25,20 @@ class UserList extends React.Component {
 
     render(){
         const { users, currentUser } = this.props;
-        const showButtons = false;
         return (<div>
-            <h3>Mobbare</h3>
             <ul className="user-list">
-                {Object.values(users).map((user) => (
-                    <li className={`user-list__user ${user.sleeping ? 'user-list__user--inactive' : ''} ${currentUser === user.name ? 'user-list__user--current' : ''}`} key={user.name}>
-                        <span className="user-list__user__name">{user.name}</span>
-                        <div className={`user-list__user__buttons${!showButtons && '--disable'}`}>
-                            <button onClick={() => this.onToggleUserSleeping(user.name)}>{user.sleeping ? 'Aktivera' : 'Inaktivera'}</button>
-                            <button onClick={() => this.onRemoveUser(user.name)}>Ta bort</button>
+                {Object.values(users).map((user, index) => (
+                    <div className="user-list__container">
+                        { user.name !== currentUser && <button className="user-list__remove-btn" onClick={() => this.onRemoveUser(user.name)} />}
+                        <div onClick={() => this.onToggleUserSleeping(user.name)} className={`pointer ${user.sleeping ? 'user-list__user--inactive' : ''}`}>
+                            {currentUser === user.name && <div className="user-list__user-image" />}
+                            <div className={`user-list__user user-list__user--${index}  ${currentUser === user.name ? 'user-list__user--current' : ''}`}
+                                 key={user.name}>
+                                <span className="user-list__user__name">{user.name}</span>
+                            </div>
                         </div>
-                    </li>
+                    </div>
                 ))}
-                {/*<li key={CONST__NEW_USER_NAME}>*/}
-                    {/*<form onSubmit={(event) => {*/}
-                        {/*event.preventDefault();*/}
-                        {/*this.onAddUser(this.name.value);*/}
-                    {/*}}>*/}
-                        {/*<input id="name" name="name" ref={(ref) => this.name = ref} />*/}
-                        {/*<button>Lägg till</button>*/}
-                    {/*</form>*/}
-                {/*</li>*/}
             </ul>
         </div>);
     }

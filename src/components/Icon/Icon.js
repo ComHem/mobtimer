@@ -13,7 +13,9 @@ const iconMap = {
 };
 
 const Icon = ({ onClick, icon }) => (
-    <button className="Icon" onClick={onClick}><figure style={{ backgroundImage: 'url(' + iconMap[icon] + ')' }}></figure></button>
+    <button className="Icon" onClick={onClick}>
+        <figure style={{ backgroundImage: 'url(' + iconMap[icon] + ')' }}/>
+    </button>
 );
 
 export default Icon;

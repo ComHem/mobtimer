@@ -1,28 +1,35 @@
 .App {
-  overflow: hidden;
+    overflow: hidden;
+    background: url("../../images/background.png") no-repeat;
+    background-size: cover;
+    height: 100vh;
+    background-image-position: fixed;
+    color: #ffffff;
+    text-align: center;
 }
 
-.App .SimpleTimeView{
-  text-align: center;
-  transform: translate3d(0px, 0, 0);
-  transition: transform .3s;
-  position: absolute;
-  width: 100%;
-  height: 100%;
-  overflow: hidden;
+.App .SimpleTimeView {
+    text-align: center;
+    transform: translate3d(0px, 0, 0);
+    transition: transform .3s;
+    position: absolute;
+    width: 100%;
+    height: 100%;
+    overflow: hidden;
 }
 
 .App--pane-open .SimpleTimeView {
     filter: blur(5px);
     transform: translate3d(-250px, 0, 0);
 }
+
 .App-icon {
     background: none;
     padding: 0;
     border: none;
 }
 
-.App-icon figure{
+.App-icon figure {
     width: 20px;
     height: 20px;
     /* line-height: 0; */
@@ -30,21 +37,20 @@
 }
 
 .App-logo {
-  animation: App-logo-spin infinite 20s linear;
-  height: 80px;
+    animation: App-logo-spin infinite 20s linear;
+    height: 80px;
 }
 
 .App-header {
-  background-color: #222;
-  height: 150px;
-  padding: 20px;
-  color: white;
+    background-color: #222;
+    height: 150px;
+    padding: 20px;
+    color: white;
 }
 
 .App-intro {
-  font-size: large;
+    font-size: large;
 }
-
 
 .App-settings {
     position: absolute;
@@ -56,6 +62,7 @@
     top: 0;
     right: 0;
 }
+
 .App-settings--open {
     transform: translate3d(0px, 0, 0);
 }
@@ -77,17 +84,22 @@
 }
 
 .App__clock-wrapper {
-  width: 300px;
-  height: 300px;
-  position: relative;
-  margin: 0 auto;
+    width: 300px;
+    height: 300px;
+    position: relative;
+    margin: 0 auto;
 }
 
 .react-countdown-clock {
-  position: absolute;
-  left: 0;
+    position: absolute;
+    left: 0;
 }
+
 @keyframes App-logo-spin {
-  from { transform: rotate(0deg); }
-  to { transform: rotate(360deg); }
+    from {
+        transform: rotate(0deg);
+    }
+    to {
+        transform: rotate(360deg);
+    }
 }

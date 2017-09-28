@@ -10,7 +10,7 @@ import reducers from './redux/reducers';
 
 const store = createStore(
   reducers,
-  undefined,
+  window.__REDUX_DEVTOOLS_EXTENSION__ && window.__REDUX_DEVTOOLS_EXTENSION__(),
   compose(
     applyMiddleware(),
     autoRehydrate()

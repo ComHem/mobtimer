@@ -1,0 +1,12 @@
+.Icon {
+    background: none;
+    padding: 0;
+    border: none;
+}
+
+.Icon figure{
+    width: 20px;
+    height: 20px;
+    /* line-height: 0; */
+    margin: 0;
+}

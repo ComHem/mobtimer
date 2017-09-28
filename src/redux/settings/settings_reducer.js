@@ -2,7 +2,7 @@ import * as types from './settings_types';
 const initial_state = {
     sessionLength: 600,
     breakInterval: 1,
-    breakTime: 600,
+    breakTime: 5,
 };
 
 const reducer = (state = initial_state, action) => {

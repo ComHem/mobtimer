@@ -1,0 +1,11 @@
+.intermezzo {
+    top: 0;
+    position: fixed;
+    width: 100%;
+    height: 100%;
+    background-color: #ccf;
+    color: #fff;
+    font-size: 76px;
+    text-align: center;
+    padding-top: 160px;
+}

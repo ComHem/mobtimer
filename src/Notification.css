@@ -1,0 +1,10 @@
+.notification{
+    transition: opacity 1s;
+    opacity: 1;
+    padding: 16px;
+    background-color: green;
+    color: #fff;
+}
+.notification--hidden{
+    opacity: 0;
+}

@@ -1,3 +1,6 @@
 .SettingsView {
-    color: black;
+    text-align: left;
+    padding: 70px 50px;
+    color: #ffffff;
+    background: linear-gradient(90deg, rgba(0,0,0,.5), rgba(0,0,0,1), rgba(0,0,0,1));
 }

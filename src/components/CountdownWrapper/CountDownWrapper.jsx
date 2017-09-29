@@ -41,18 +41,20 @@ class CountDownWrapper extends Component {
 
     render() {
         const { sessionLength } = this.props;
+        const size = 400;
         return (
             <div className="countdown-wrapper">
                 {this.state.completed && <div className="countdown-wrapper__play-btn" />}
                 {this.state.pause && <div className="countdown-wrapper__pause-btn" />}
                 {this.state.show &&
-                    <div className="countdown-wrapper__clock-wrapper" onClick={this.state.completed ? this.resetTimer : this.pauseTimer}>
+                    <div className="countdown-wrapper__clock-wrapper" style={{    width: `${size}px`, height: `${size}px`}}
+                    onClick={this.state.completed ? this.resetTimer : this.pauseTimer}>
                         <ReactCountdownClock
                             seconds={5}
                             weight={30}
                             color="#0f0"
                             alpha={0.9}
-                            size={800}
+                            size={size}
                             onComplete={this.onComplete}
                             paused={this.state.pause}
                             pausedText=""

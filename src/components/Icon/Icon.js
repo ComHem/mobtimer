@@ -3,6 +3,7 @@ import forward from '../../images/fast-forward.svg';
 import stop from '../../images/stop.svg';
 import play from '../../images/play-button.svg';
 import pause from '../../images/pause.svg';
+import settings from '../../images/equalizer.svg';
 import './Icon.css';
 
 const iconMap = {
@@ -10,10 +11,11 @@ const iconMap = {
     stop,
     pause,
     forward,
+    settings,
 };
 
-const Icon = ({ onClick, icon }) => (
-    <button className="Icon" onClick={onClick}>
+const Icon = ({ onClick, icon, className = '', size = 'medium' }) => (
+    <button className={`Icon Icon--${size} ${className}`} onClick={onClick}>
         <figure style={{ backgroundImage: 'url(' + iconMap[icon] + ')' }}/>
     </button>
 );

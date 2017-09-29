@@ -22,9 +22,9 @@ class SettingsView extends React.Component {
         const { className='', fields } = this.props;
         return (
             <div className={`SettingsView ${className}`}>
-                {Object.keys(fields).map((fieldName) => (
+                {Object.keys(fields).filter(fieldName => fieldName !== 'strings').map((fieldName) => (
                     <div key={fieldName}>
-                        <h3>{fieldName}</h3>
+                        <h3>{fields.strings[fieldName]}</h3>
                         <input
                             value={fields[fieldName]}
                             onChange={(event) => this.onChange(fieldName, event.target.value)}

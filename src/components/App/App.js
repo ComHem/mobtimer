@@ -34,13 +34,15 @@ class App extends Component {
         const paneOpen = showSettings;
         return (
             <div className={`App ${paneOpen ? 'App--pane-open' : ''}`}>
-                <UserList />
-                <CountDownWrapper />
-                <Notification />
-                { breaking && <Intermezzo /> }
-                <div><h4>Current rotation: {rotation} </h4></div>
-                <Icon icon='forward' onClick={this.onNextUser} />
-                <button onClick={this.onToggleSettings} className={`App-settings-button App-settings-button--${showSettings ? 'open' : 'closed'}`}>Inställningar</button>
+                <div className="App-mainView">
+                    <UserList />
+                    <CountDownWrapper />
+                    <Notification />
+                    { breaking && <Intermezzo /> }
+                    <div><h4>Current rotation: {rotation} </h4></div>
+                </div>
+                <Icon icon='forward' size="large" onClick={this.onNextUser} />
+                <Icon icon='settings' onClick={this.onToggleSettings} className={`App-settings-button App-settings-button--${showSettings ? 'open' : 'closed'}`} />
                 <SettingsView className={showSettings ? 'App-settings App-settings--open' : 'App-settings'} />
 
             </div>

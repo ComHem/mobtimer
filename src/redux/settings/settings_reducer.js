@@ -3,6 +3,11 @@ const initial_state = {
     sessionLength: 600,
     breakInterval: 1,
     breakTime: 5,
+    strings: {
+        sessionLength: 'Length of Turn (sec)',
+        breakInterval: 'Break every (n) round',
+        breakTime: 'Lenght of Breaks (sec)'
+    }
 };
 
 const reducer = (state = initial_state, action) => {

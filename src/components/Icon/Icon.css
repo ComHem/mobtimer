@@ -4,9 +4,16 @@
     border: none;
 }
 
-.Icon figure{
-    width: 20px;
-    height: 20px;
-    /* line-height: 0; */
+.Icon figure {
     margin: 0;
+}
+
+.Icon--medium figure {
+    width: 32px;
+    height: 32px;
+}
+
+.Icon--large figure {
+    width: 64px;
+    height: 64px;
 }

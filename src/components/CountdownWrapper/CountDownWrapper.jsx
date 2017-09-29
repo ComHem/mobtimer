@@ -55,7 +55,7 @@ class CountDownWrapper extends Component {
                     <div className="countdown-wrapper__clock-wrapper" style={{    width: `${size}px`, height: `${size}px`}}
                     onClick={this.state.completed ? this.resetTimer : this.pauseTimer}>
                         <ReactCountdownClock
-                            seconds={5}
+                            seconds={sessionLength}
                             weight={50}
                             color="#0f0"
                             alpha={0.9}

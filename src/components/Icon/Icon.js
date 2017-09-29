@@ -4,6 +4,7 @@ import stop from '../../images/stop.svg';
 import play from '../../images/play-button.svg';
 import pause from '../../images/pause.svg';
 import settings from '../../images/equalizer.svg';
+import coffee from '../../images/coffee-cup.svg';
 import './Icon.css';
 
 const iconMap = {
@@ -12,6 +13,7 @@ const iconMap = {
     pause,
     forward,
     settings,
+    coffee,
 };
 
 const Icon = ({ onClick, icon, className = '', size = 'medium' }) => (

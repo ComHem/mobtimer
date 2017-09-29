@@ -10,11 +10,12 @@
 
 .user-list__user {
     display: flex;
-    width: 50px;
-    height: 50px;
+    width: 80px;
+    height: 80px;
     border-radius: 50%;
     border: 1px solid gold;
     margin: 15px;
+    transition: all 100ms linear;
 }
 
 .user-list__user-container {
@@ -29,11 +30,11 @@
 
 .user-list__user--current {
     color: #0f0;
-    -webkit-transform: scale(1.2, 1.2);
-    -moz-transform: scale(1.2, 1.2);
-    -ms-transform: scale(1.2, 1.2);
-    -o-transform: scale(1.2, 1.2);
-    transform: scale(1.2, 1.2);
+    -webkit-transform: scale(1.4, 1.4);
+    -moz-transform: scale(1.4, 1.4);
+    -ms-transform: scale(1.4, 1.4);
+    -o-transform: scale(1.4, 1.4);
+    transform: scale(1.4, 1.4);
     align-self: flex-start;
 }
 
@@ -42,6 +43,9 @@
     margin: 0 auto -25px;
     font-size: 20px;
     overflow-wrap: normal;
+    max-width: 100%;
+    overflow: hidden;
+    text-overflow: ellipsis;
 }
 
 
@@ -62,10 +66,10 @@
 .user-list__user-image {
     background: url("../../images/crown.png") no-repeat;
     background-size: cover;
-    height: 46px;
-    width: 74px;
-    margin-bottom: -25px;
-    margin-left: -13px;
+    height: 66px;
+    width: 109px;
+    margin-bottom: -20px;
+    margin-left: -25px;
     -webkit-transform: rotate(-22deg);
     -ms-transform: rotate(-22deg);
     transform: rotate(-22deg);

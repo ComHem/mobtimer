@@ -5,8 +5,15 @@
 }
 
 .Icon figure{
-    width: 80px;
-    height: 80px;
-    /* line-height: 0; */
     margin: 0;
+}
+
+.Icon--medium figure {
+    width: 32px;
+    height: 32px;
+}
+
+.Icon--large figure {
+    width: 64px;
+    height: 64px;
 }

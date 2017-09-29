@@ -4,6 +4,7 @@ import { connect } from 'react-redux';
 import { nextUser } from '../../redux/user/user_actions';
 import './CountDownWrapper.css';
 import alarm from  "../../audio/alarm.ogg";
+import elevator from  "../../audio/elevator_jazz.mp3";
 import {randomSound} from "../../audio/Audio";
 
 
@@ -12,6 +13,9 @@ class CountDownWrapper extends Component {
         super(props);
         this.alarm = new Audio(alarm);
         this.alarm.loop = true;
+
+        this.elevator = new Audio(elevator);
+        this.elevator.loop = true;
     }
 
     state = {
@@ -41,6 +45,7 @@ class CountDownWrapper extends Component {
     };
 
     playAlarm = () => {
+    this.elevator.pause();
       if(this.state.completed) {
           this.alarm.play();
       }
@@ -58,15 +63,18 @@ class CountDownWrapper extends Component {
         this.props.dispatch(nextUser());
     };
 
-    pauseTimer = (shouldPause) => {
+    pauseTimer = () => {
+        this.state.pause ? this.elevator.pause() : this.elevator.play()
         this.setState({
-            pause: !this.state.pause || shouldPause
-        })
+            pause: !this.state.pause
+        });
     };
 
     nextUser = () => {
         this.props.dispatch(nextUser());
-        this.pauseTimer(true);
+        this.setState({
+            pause: true
+        })
         this.resetTimer();
     };
 

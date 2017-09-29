@@ -3,10 +3,14 @@ import ReactCountdownClock from 'react-countdown-clock';
 import { connect } from 'react-redux';
 import { nextUser } from '../../redux/user/user_actions';
 import './CountDownWrapper.css';
+import alarm from  "../../audio/alarm.ogg";
 
 
 class CountDownWrapper extends Component {
-
+    constructor(props){
+        super(props);
+        this.alarm = new Audio(alarm);
+    }
     state = {
         show: true,
         completed: false,
@@ -24,10 +28,11 @@ class CountDownWrapper extends Component {
     };
 
     onComplete = () => {
-        console.log("NEXT");
+        this.alarm.play();
         this.setState({
             completed: true
         });
+
         this.props.dispatch(nextUser());
     };
 
@@ -49,7 +54,7 @@ class CountDownWrapper extends Component {
                     <div className="countdown-wrapper__clock-wrapper" onClick={this.state.completed ? this.resetTimer : this.pauseTimer}>
                         <ReactCountdownClock
                             seconds={5}
-                            weight={30}
+                            weight={50}
                             color="#0f0"
                             alpha={0.9}
                             size={800}

@@ -6,6 +6,7 @@
     background-image-position: fixed;
     color: #ffffff;
     text-align: center;
+    font-size: 32px;
 }
 
 .App .SimpleTimeView {
@@ -30,8 +31,8 @@
 }
 
 .App-icon figure {
-    width: 20px;
-    height: 20px;
+    width: 80px;
+    height: 80px;
     /* line-height: 0; */
     margin: 0;
 }

@@ -4,7 +4,6 @@ import { connect } from 'react-redux';
 import { nextUser } from '../../redux/user/user_actions';
 import './CountDownWrapper.css';
 import alarm from  "../../audio/alarm.ogg";
-import notification from  "../../audio/belt-snap01.ogg";
 import {randomSound} from "../../audio/Audio";
 
 
@@ -59,10 +58,16 @@ class CountDownWrapper extends Component {
         this.props.dispatch(nextUser());
     };
 
-    pauseTimer = () => {
+    pauseTimer = (shouldPause) => {
         this.setState({
-            pause: !this.state.pause
+            pause: !this.state.pause || shouldPause
         })
+    };
+
+    nextUser = () => {
+        this.props.dispatch(nextUser());
+        this.pauseTimer(true);
+        this.resetTimer();
     };
 
 
@@ -87,6 +92,7 @@ class CountDownWrapper extends Component {
                             pausedText=""
                         />
                     </div>}
+                <div className="countdown-wrapper__next-btn" onClick={this.nextUser}/>
             </div>
         );
     }

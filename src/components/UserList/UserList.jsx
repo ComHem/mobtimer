@@ -17,7 +17,9 @@ class UserList extends React.Component {
         this.props.dispatch(addUser({ name, sleeping:false }));
     }
     onToggleUserSleeping(name) {
-        this.props.dispatch(toggleUserSleeping(name));
+        if(name !== this.props.currentUser) {
+            this.props.dispatch(toggleUserSleeping(name));
+        }
     }
     onRemoveUser(name) {
         this.props.dispatch(removeUser(name))

@@ -28,7 +28,7 @@ class UserList extends React.Component {
         return (<div>
             <ul className="user-list">
                 {Object.values(users).map((user, index) => (
-                    <div className="user-list__container">
+                    <div className="user-list__user-container">
                         { user.name !== currentUser && <button className="user-list__remove-btn" onClick={() => this.onRemoveUser(user.name)} />}
                         <div onClick={() => this.onToggleUserSleeping(user.name)} className={`pointer ${user.sleeping ? 'user-list__user--inactive' : ''}`}>
                             {currentUser === user.name && <div className="user-list__user-image" />}

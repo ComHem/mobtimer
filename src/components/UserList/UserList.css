@@ -5,6 +5,7 @@
     justify-content: center;
     align-items: baseline;
     padding: 0;
+    margin-bottom: 50px;
 }
 
 .user-list__user {
@@ -13,11 +14,12 @@
     height: 50px;
     border-radius: 50%;
     border: 1px solid gold;
-    margin: 10px;
+    margin: 15px;
 }
 
-.user-list__container {
+.user-list__user-container {
     position: relative;
+    padding: 0 25px;
 }
 
 .user-list__user--inactive {
@@ -37,7 +39,9 @@
 
 .user-list__user__name {
     align-self: flex-end;
-    margin: 0 auto -20px;
+    margin: 0 auto -25px;
+    font-size: 20px;
+    overflow-wrap: normal;
 }
 
 
@@ -50,8 +54,8 @@
     box-shadow: none;
     background-size: 8px;
     position: absolute;
-    right: 7px;
-    top: 3px;
+    right: 30px;
+    top: 10px;
     z-index: 2;
 }
 

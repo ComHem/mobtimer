@@ -7,9 +7,33 @@
     position: absolute;
     background: url("../../images/play-button.svg") no-repeat;
     background-size: cover;
-    height: 70px;
-    width: 70px;
+    height: 120px;
+    width: 120px;
     left: 50%;
     top: 50%;
     transform: translateY(-50%) translateX(-40%);
+}
+
+.countdown-wrapper__pause-btn {
+    position: absolute;
+    background: url("../../images/pause.svg") no-repeat;
+    background-size: cover;
+    height: 120px;
+    width: 120px;
+    left: 50%;
+    top: 50%;
+    transform: translateY(-50%) translateX(-50%);
+}
+
+.countdown-wrapper__clock-wrapper {
+    width: 800px;
+    height: 800px;
+    position: relative;
+    margin: 0 auto;
+    cursor: pointer;
+}
+
+.react-countdown-clock {
+    position: absolute;
+    left: 0;
 }

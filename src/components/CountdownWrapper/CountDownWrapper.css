@@ -13,6 +13,13 @@
     top: 50%;
     transform: translateY(-50%) translateX(-40%);
 }
+.countdown-wrapper__next-btn {
+    background: url("../../images/fast-forward.svg") no-repeat;
+    background-size: cover;
+    height: 80px;
+    width: 80px;
+    margin: 20px auto;
+}
 
 .countdown-wrapper__pause-btn {
     position: absolute;
@@ -22,7 +29,7 @@
     width: 120px;
     left: 50%;
     top: 50%;
-    transform: translateY(-50%) translateX(-50%);
+    transform: translateY(-90%) translateX(-50%);
 }
 
 .countdown-wrapper__clock-wrapper {

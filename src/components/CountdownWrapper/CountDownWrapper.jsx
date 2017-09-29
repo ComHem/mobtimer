@@ -4,21 +4,34 @@ import { connect } from 'react-redux';
 import { nextUser } from '../../redux/user/user_actions';
 import './CountDownWrapper.css';
 import alarm from  "../../audio/alarm.ogg";
+import elevator from  "../../audio/elevator_jazz.mp3";
+import {randomSound} from "../../audio/Audio";
 
 
 class CountDownWrapper extends Component {
     constructor(props){
         super(props);
         this.alarm = new Audio(alarm);
+        this.alarm.loop = true;
+
+        this.elevator = new Audio(elevator);
+        this.elevator.loop = true;
     }
+
     state = {
         show: true,
         completed: false,
         pause: false
     };
 
+    componentWillReceiveProps(nextProps){
+        if (nextProps.sessionLength !== this.props.sessionLength || (nextProps.current !== this.props.current && this.props.completed)) {
+            this.resetTimer();
+        }
+    }
+
     resetTimer = () => {
-        console.log("reset");
+        this.pauseAlarm();
         this.setState({ show: false }, () => {
             this.setState({
                 show: true,
@@ -27,21 +40,43 @@ class CountDownWrapper extends Component {
         });
     };
 
+    pauseAlarm() {
+        this.alarm.pause();
+    };
+
+    playAlarm = () => {
+    this.elevator.pause();
+      if(this.state.completed) {
+          this.alarm.play();
+      }
+    };
+
     onComplete = () => {
-        this.alarm.play();
+        randomSound().play();
+
         this.setState({
             completed: true
+        }, () => {
+           setTimeout( this.playAlarm, 10000 )
         });
 
         this.props.dispatch(nextUser());
     };
 
     pauseTimer = () => {
-        console.log("pause")
+        this.state.pause ? this.elevator.pause() : this.elevator.play()
         this.setState({
             pause: !this.state.pause
+        });
+    };
+
+    nextUser = () => {
+        this.props.dispatch(nextUser());
+        this.setState({
+            pause: true
         })
-    }
+        this.resetTimer();
+    };
 
 
     render() {
@@ -65,6 +100,7 @@ class CountDownWrapper extends Component {
                             pausedText=""
                         />
                     </div>}
+                <div className="countdown-wrapper__next-btn" onClick={this.nextUser}/>
             </div>
         );
     }
@@ -72,7 +108,8 @@ class CountDownWrapper extends Component {
 
 const mapStateToProps = (state) => ({
     sessionLength: state.settings.sessionLength,
-    running: state.time.running
+    running: state.time.running,
+    current: state.user.current
 });
 
 export default connect(mapStateToProps)(CountDownWrapper);

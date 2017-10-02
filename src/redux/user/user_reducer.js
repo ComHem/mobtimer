@@ -3,7 +3,7 @@ import * as types from './user_types';
 const initial_state = {
     rotation: 0,
     list: {
-        'break': { name: 'break', type: 'break', order: 0 }
+        'break': { name: 'break', type: 'break' }
     }
 };
 

@@ -1,6 +1,8 @@
 import React from 'react';
 import { connect } from 'react-redux';
-import { setSecondsLeft, decrementSeconds, setBreaking, setRunning } from '../../redux/time/time_actions';
+import Icon from '../Icon/Icon';
+import { setSecondsLeft, decrementSeconds, setRunning } from '../../redux/time/time_actions';
+import { nextUser } from '../../redux/user/user_actions';
 
 class TimeControl extends React.Component {
     constructor({sessionLength}){
@@ -9,6 +11,7 @@ class TimeControl extends React.Component {
         this.onStopTimer = this.onStopTimer.bind(this);
         this.onStartTimer = this.onStartTimer.bind(this);
         this.onPauseTimer = this.onPauseTimer.bind(this);
+        this.onNextUser = this.onNextUser.bind(this);
         this.onTimeEnd = this.onTimeEnd.bind(this);
         this.resetTimer = this.resetTimer.bind(this);
         this.state = {
@@ -38,25 +41,19 @@ class TimeControl extends React.Component {
     }
     onTimeEnd() {
         this.onStopTimer();
-        if (this.props.breaking) {
-            this.props.dispatch(setBreaking(false));
-            this.resetTimer();
-        }
-        else if (this.props.onTime) {
-
+        if (this.props.onTime) {
             this.props.onTime();
         }
     }
+    onNextUser() {
+        this.props.dispatch(nextUser());
+    }
     componentWillReceiveProps(nextProps){
-        if ((this.props.breaking  !== nextProps.breaking) && nextProps.breaking) {
-            this.onStartTimer();
-        }
         if (this.props.currentUser !== nextProps.currentUser) {
             this.onStopTimer();
         }
         if (this.props.rotation !== nextProps.rotation && !(nextProps.rotation % this.props.breakInterval)) {
-            this.props.dispatch(setSecondsLeft(this.props.breakTime));
-            this.props.dispatch(setBreaking(true));
+            //this.props.dispatch(setSecondsLeft(this.props.breakTime));
         } else if (this.props.secondsLeft !== nextProps.secondsLeft && nextProps.secondsLeft === 0) {
             this.onTimeEnd();
         }
@@ -65,9 +62,10 @@ class TimeControl extends React.Component {
         const { running } = this.props;
         return (<div>
             {running
-                ? (<button onClick={this.onPauseTimer}>Paus</button>)
-                : (<button onClick={this.onStartTimer}>Start</button>)}
-            <button onClick={this.onStopTimer}>Stop</button>
+                ? (<Icon icon='pause' size="large" onClick={this.onPauseTimer} />)
+                : (<Icon icon='play' size="large" onClick={this.onStartTimer} />)}
+            <Icon icon='stop' size="large" onClick={this.onStopTimer} />
+            <Icon icon='forward' size="large" onClick={this.onNextUser} />
         </div>);
     }
 }

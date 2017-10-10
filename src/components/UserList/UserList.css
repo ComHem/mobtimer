@@ -3,7 +3,7 @@
     display: flex;
     flex-direction: row;
     justify-content: center;
-    align-items: baseline;
+    align-items: center;
     padding: 0;
     margin-bottom: 50px;
 }
@@ -105,6 +105,13 @@
 .user-list__user--5 {
     background: url("../../images/user5.jpg") no-repeat;
     background-size: cover;
+}
+.UserList--break {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    font-size: 20px;
+    padding: 0 25px;
 }
 
 .pointer {

@@ -3,7 +3,6 @@ import * as types from './user_types';
 const initial_state = {
     rotation: 0,
     list: {
-        'break': { name: 'break', type: 'break' }
     }
 };
 
@@ -16,15 +15,12 @@ const reducer = (state = initial_state, action) => {
             const userList = state.list;
             if (name && name !== types.CONST__NEW_USER_NAME && userList&& !userList[name]) {
                 const current = state.current || name;
-                return { ...state, ...{ current, list: {...userList, ...{[name]: { ...action.user, type: 'human'}}}}}
+                return { ...state, ...{ current, list: {...userList, ...{[name]: action.user}}}}
             }
             return state;
         }
         case types.REMOVE_USER: {
             const list = {...state.list};
-            if (list[action.name].type !== 'human') {
-                return state;
-            }
             delete list[action.name];
             return {...state, ...{ list }};
         }

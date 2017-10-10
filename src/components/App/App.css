@@ -23,6 +23,21 @@
     transform: translate3d(-180px, 0, 0);
 }
 
+.App .SimpleTimeView {
+    text-align: center;
+    transform: translate3d(0px, 0, 0);
+    transition: transform .3s;
+    position: absolute;
+    width: 100%;
+    height: 100%;
+    overflow: hidden;
+}
+
+.App--pane-open .SimpleTimeView {
+    filter: blur(5px);
+    transform: translate3d(-180px, 0, 0);
+}
+
 .App-icon {
     background: none;
     padding: 0;

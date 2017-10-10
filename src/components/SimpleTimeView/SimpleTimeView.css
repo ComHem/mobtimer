@@ -1,18 +1,11 @@
 .SimpleTimeView {
-    position: relative;
-}
-
-.SimpleTimeView-circle{
-
-}
-.SimpleTimeView-clock{
-    position: absolute;
-    left: 0;
+    position: fixed;
     width: 100%;
     height: 100%;
-    display: flex;
-    justify-content: center;
-    align-items: center;
-    top: 0;
-    font-size: 72px;
+    background-color: #4d4;
+}
+
+.SimpleTimeView-timer{
+    font-size: 128px;
+    color: #fff;
 }

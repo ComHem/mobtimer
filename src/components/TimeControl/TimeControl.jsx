@@ -1,6 +1,7 @@
 import React from 'react';
 import { connect } from 'react-redux';
 import { setSecondsLeft, decrementSeconds, setBreaking, setRunning } from '../../redux/time/time_actions';
+import Icon from "../Icon/Icon";
 
 class TimeControl extends React.Component {
     constructor({sessionLength}){
@@ -65,9 +66,10 @@ class TimeControl extends React.Component {
         const { running } = this.props;
         return (<div>
             {running
-                ? (<button onClick={this.onPauseTimer}>Paus</button>)
-                : (<button onClick={this.onStartTimer}>Start</button>)}
-            <button onClick={this.onStopTimer}>Stop</button>
+                ? (<Icon icon='pause' size="large" onClick={this.onPauseTimer} />)
+                : (<Icon icon='play' size="large" onClick={this.onStartTimer} />)}
+            <Icon icon='stop' size="large" onClick={this.onStopTimer} />
+            <Icon icon='forward' size="large" onClick={this.onNextUser} />
         </div>);
     }
 }

@@ -10,7 +10,7 @@
     height: 120px;
     width: 120px;
     left: 50%;
-    top: 50%;
+    top: 40%;
     transform: translateY(-50%) translateX(-40%);
 }
 .countdown-wrapper__next-btn {

@@ -2,18 +2,17 @@ Done
 * Lägg till / ta bort användare
 * Rotation av användare
 * Starta/stoppa tiden
-* Nollställ tiden
+* Nollställtiden
 * Nästa mobbare
 * Pauser
 * Variabel pauslängd
 * Notifiera om skifte
 * Visuell Timer 
-* Visuell Användarkö 
+* Visuell AnvändarKö 
 * Ljud vid byte
 
 Todo
 * Local storage
-* Elevator music på intermezzo
 * Dockerize
 * Fix node config(including server mode)
 

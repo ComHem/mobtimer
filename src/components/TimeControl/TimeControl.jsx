@@ -41,7 +41,6 @@ class TimeControl extends React.Component {
 
     onTimer() {
         this.props.dispatch(decrementSeconds());
-        document.title = this.props.secondsLeft;
     }
 
     onTimeEnd() {

@@ -1,5 +1,5 @@
 
-# Building awesome mobtimer!
+# The most awesome mobtimer of all time! - "Pärtan"
 #####
 #
 VISIT PUBLIC MOBTIMER ---> http://mobtimer.westeurope.cloudapp.azure.com/

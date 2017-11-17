@@ -53,6 +53,7 @@ class App extends Component {
                 <Icon icon='settings' onClick={this.onToggleSettings}
                       className={`App-settings-button App-settings-button--${showSettings ? 'open' : 'closed'}`}/>
                 <SettingsView className={showSettings ? 'App-settings App-settings--open' : 'App-settings'}/>
+                <Intermezzo/>
             </div>
         );
     }

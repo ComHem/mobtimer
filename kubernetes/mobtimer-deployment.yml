@@ -1,0 +1,27 @@
+apiVersion: apps/v1beta1
+kind: Deployment
+metadata:
+  name: mobtimer-deployment
+spec:
+  replicas: 2
+  strategy:
+    rollingUpdate:
+      maxSurge: 1
+      maxUnavailable: 1
+  minReadySeconds: 10
+  template:
+    metadata:
+      labels:
+        app: mobtimer
+    spec:
+      containers:
+      - name: mobtimer
+        image: mimerdevcontainerregistry.azurecr.io/mobtimer:latest
+        ports:
+        - containerPort: 8080
+        imagePullPolicy: Always
+        envFrom:
+        - secretRef:
+            name: mobtimer-secrets
+        - configMapRef:
+            name: mobtimer-configmap

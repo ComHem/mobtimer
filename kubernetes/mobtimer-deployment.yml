@@ -21,7 +21,5 @@ spec:
         - containerPort: 8080
         imagePullPolicy: Always
         envFrom:
-        - secretRef:
-            name: mobtimer-secrets
         - configMapRef:
             name: mobtimer-configmap

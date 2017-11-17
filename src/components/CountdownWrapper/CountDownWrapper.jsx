@@ -64,7 +64,7 @@ class CountDownWrapper extends Component {
     };
 
     pauseTimer = () => {
-        this.state.pause ? this.elevator.pause() : this.elevator.play()
+        this.state.pause ? this.elevator.pause() : this.elevator.play();
         this.setState({
             pause: !this.state.pause
         });

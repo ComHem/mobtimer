@@ -46,14 +46,13 @@ class App extends Component {
                     <UserList/>
                     <CountDownWrapper/>
                     <Notification/>
-                    {breaking && <Intermezzo/>}
                     <div><h4>Current rotation: {rotation} </h4></div>
                 </div>
                 <Icon icon='forward' size="large" onClick={this.onNextUser}/>
                 <Icon icon='settings' onClick={this.onToggleSettings}
                       className={`App-settings-button App-settings-button--${showSettings ? 'open' : 'closed'}`}/>
+                {breaking && <Intermezzo/>}
                 <SettingsView className={showSettings ? 'App-settings App-settings--open' : 'App-settings'}/>
-                <Intermezzo/>
             </div>
         );
     }

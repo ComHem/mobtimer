@@ -7,9 +7,12 @@
 ![Com Hem](https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcRSKoI_VsCygNKs_M50WQaUp4ibBAfgj3hgSxjBWBR-y2od8FX0sFc74P81)
 <br><br>
 
+#Installation
 
+npm install
+npm start
 
-#Todo
+#Todos
 Done
 * Lägg till / ta bort användare
 * Rotation av användare
@@ -30,7 +33,7 @@ Todo
 
 Doing
 
-Bonus
+#Bonus
   <ul>
       <li>Mongo-state</li>
       <li>Keyboard shortcuts</li>
@@ -42,8 +45,8 @@ Bonus
       <li>Uträknad sessionslängd(ex 60 min / deltagare - paus)</li>
   </ul>
 
-
 #Development
+
 Du måste ha Sass globalt för att kunna utveckla med 
 ```bash
 npm install -g node-sass

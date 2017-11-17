@@ -1,3 +1,4 @@
+language: generic
 dist: trusty
 sudo: required
 

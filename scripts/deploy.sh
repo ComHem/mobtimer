@@ -14,7 +14,7 @@ case "${BRANCH}" in
     ;;
 esac
 
-repo="${registry}/mobtimer"
+repo="${DOCKER_REGISTRY}/mobtimer"
 image=${repo}:${VERSION}
 
 echo "Creating and publishing docker image..." && \

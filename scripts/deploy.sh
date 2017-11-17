@@ -25,4 +25,4 @@ docker push ${image} && \
 echo "Deploying mobtimer to cluster…" && \
 kubectl apply -f kubernetes/mobtimer-configmap.yml --record && \
 kubectl set image deployment/mobtimer-deployment mobtimer=${image} --record && \
-kubectl rollout status deployment/mobtimer-deployment && \
+kubectl rollout status deployment/mobtimer-deployment

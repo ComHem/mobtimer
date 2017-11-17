@@ -16,8 +16,9 @@ class SettingsView extends React.Component {
         }
     }
 
-    onAddUser(name) {
+    addUser(name) {
         this.props.dispatch(addUser({name, sleeping: false}));
+        this.name.value = "";
     }
 
     componentWillReceiveProps(nextProps) {
@@ -28,7 +29,7 @@ class SettingsView extends React.Component {
 
     onFormSubmit = (event) => {
         event.preventDefault();
-        this.onAddUser(this.name.value);
+        this.addUser(this.name.value);
     };
 
     renderFields() {
@@ -37,10 +38,7 @@ class SettingsView extends React.Component {
         return Object.keys(fields).filter(fieldName => fieldName !== 'strings').map((fieldName) => (
             <div key={fieldName}>
                 <h3>{fields.strings[fieldName]}</h3>
-                <input
-                    value={fields[fieldName]}
-                    onChange={(event) => this.onChange(fieldName, event.target.value)}
-                />
+                <input value={fields[fieldName]} onChange={(event) => this.onChange(fieldName, event.target.value)} />
             </div>
         ))
     }

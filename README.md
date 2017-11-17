@@ -35,19 +35,15 @@ Bonus
 #Development
 Du måste ha Sass globalt för att kunna utveckla med 
 ```bash
-npm start
-``` 
-```bash
-
 npm install -g node-sass
-```
+``` 
 
 Installera dependencies
 ```bash
-npm install
+yarn
 ```
 
 Starta SCSS- och JSX-livereload på localhost:3000/
 ```
-npm start
+yarn start
 ```

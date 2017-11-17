@@ -8,26 +8,32 @@ import lightsaber from "./lightsaber_02.mp3";
 import metalGearSolid from "./metalgearsolid.swf.mp3";
 import nooo from "./nooo.swf.mp3";
 import shoryuken from "./shoryuken.mp3";
-import shutup from "./shutup.swf.mp3";
 import wakawaka from "./wakawaka.swf.mp3";
 import elevator from "./elevator_jazz.mp3";
 
-
+let currentVolume = 1;
 const sounds = [burned, chewbacca, cricket, doh, hadouken, incorrect, lightsaber,
-    metalGearSolid, nooo, shoryuken, shutup, wakawaka, wakawaka];
+    metalGearSolid, nooo, shoryuken, wakawaka];
 
 export const randomSound = () => {
         const min = 0;
         const max = sounds.length;
         const random = Math.floor(Math.random() * (max - min)) + min;
 
-    return new Audio(sounds[random]);
+    return makeAudioClip(sounds[random]);
+};
+
+export const toggleAudio = () => {
+    currentVolume = currentVolume > 0 ? 0 : 1;
 };
 
 export const elevatorMusic = () => {
-    return new Audio(elevator);
+    return makeAudioClip(elevator);
 };
 
+const makeAudioClip = (sound) => {
+    let audio = new Audio(sound);
+        audio.volume = currentVolume;
 
-
-
+    return audio;
+};

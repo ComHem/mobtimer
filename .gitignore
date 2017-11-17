@@ -2,3 +2,5 @@
 /node_modules
 /.idea
 /build
+/mobtimer.iml
+/package-lock.json

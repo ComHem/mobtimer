@@ -34,6 +34,6 @@ class Notification extends React.Component {
 
 const mapStateToProps = (state) => ({
     currentUser: state.user.current,
-})
+});
 
 export default connect(mapStateToProps)(Notification);

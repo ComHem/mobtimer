@@ -17,12 +17,13 @@ esac
 repo="${DOCKER_REGISTRY}/mobtimer"
 image=${repo}:${VERSION}
 
-echo "Creating and publishing docker image..." && \
+echo "Creating and publishing docker image: ${image}..." && \
 docker login -u=${DOCKER_USERNAME} -p=${DOCKER_PASSWORD} ${DOCKER_REGISTRY} && \
 docker build -t ${image} . && \
 docker tag ${image} ${repo}:${tag} && \
 docker push ${image} && \
-echo "Deploying mobtimer to cluster…" && \
+
+echo "Deploying mobtimer to cluster..." && \
 kubectl apply -f kubernetes/mobtimer-configmap.yml --record && \
 kubectl set image deployment/mobtimer-deployment mobtimer=${image} --record && \
 kubectl rollout status deployment/mobtimer-deployment

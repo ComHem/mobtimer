@@ -1,3 +1,4 @@
+#Todo
 Done
 * Lägg till / ta bort användare
 * Rotation av användare
@@ -29,3 +30,24 @@ Bonus
       <li>Autostart av nästa</li>
       <li>Uträknad sessionslängd(ex 60 min / deltagare - paus)</li>
   </ul>
+
+
+#Development
+Du måste ha Sass globalt för att kunna utveckla med 
+```bash
+npm start
+``` 
+```bash
+
+npm install -g node-sass
+```
+
+Installera dependencies
+```bash
+npm install
+```
+
+Starta SCSS- och JSX-livereload på localhost:3000/
+```
+npm start
+```

@@ -5,7 +5,8 @@
     text-align: center;
     position: relative;
 }
-.App-mainView{
+
+.App-mainView {
     background: url("../../images/background.png") no-repeat;
     background-image-position: fixed;
     background-size: cover;
@@ -89,6 +90,11 @@
 .app__done {
     text-decoration: line-through;
     color: green;
+}
+
+footer {
+    position: absolute;
+    bottom: 0;
 }
 
 @keyframes App-logo-spin {

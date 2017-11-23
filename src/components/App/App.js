@@ -7,7 +7,9 @@ import Notification from '../Notification/Notification.jsx';
 import CountDownWrapper from '../CountdownWrapper/CountDownWrapper.jsx';
 import SettingsView from '../SettingsView/SettingsView';
 import {nextUser} from '../../redux/user/user_actions';
+import {setBreaking} from '../../redux/time/time_actions';
 import Icon from '../Icon/Icon';
+import logo from '../../images/comhem_logo.png';
 
 class App extends Component {
     constructor() {
@@ -30,6 +32,7 @@ class App extends Component {
 
     onNextUser() {
         this.props.dispatch(nextUser());
+        this.props.dispatch((setBreaking()));
     }
 
     onToggleSettings() {
@@ -53,6 +56,10 @@ class App extends Component {
                       className={`App-settings-button App-settings-button--${showSettings ? 'open' : 'closed'}`}/>
                 {breaking && <Intermezzo/>}
                 <SettingsView className={showSettings ? 'App-settings App-settings--open' : 'App-settings'}/>
+
+                <footer>
+                    <img src={logo} alt="" />
+                </footer>
             </div>
         );
     }

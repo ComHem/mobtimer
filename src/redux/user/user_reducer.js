@@ -38,11 +38,15 @@ const reducer = (state = initial_state, action) => {
                 .map(user => user.name);
             const nextIndex = ( activeUsers.indexOf(state.current) + 1 ) % activeUsers.length;
             const nextUser = activeUsers[nextIndex];
-            const rotation = nextIndex === 0
+            const isToday = state.activeDate && state.activeDate === new Date().getDate();
+            let rotation = nextIndex === 0
                 ? (state.rotation + 1)
                 : state.rotation;
+            if (!isToday) {
+                rotation = 0
+            }
 
-            return {...state, ...{current: nextUser, rotation}}
+            return {...state, ...{current: nextUser, rotation, activeDate: new Date().getDate()}}
         }
         default:
             return state;

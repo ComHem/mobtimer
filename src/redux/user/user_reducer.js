@@ -2,11 +2,8 @@ import * as types from './user_types';
 
 const initial_state = {
     rotation: 0,
-    list: {
-    }
+    list: {}
 };
-
-const NEW_USER_NAME = 'new_user';
 
 const reducer = (state = initial_state, action) => {
     switch(action.type) {

@@ -14,7 +14,7 @@ const reducer = (state = initial_state, action) => {
         case types.DECREMENT_SECONDS: {
             return {...state, ...{secondsLeft: Math.max(state.secondsLeft - 1, 0)}};
         }
-        case types.SET_BREAKING: {
+        case types.BREAKING: {
             return {...state, ...{breaking: action.breaking}};
         }
         case types.SET_RUNNING: {

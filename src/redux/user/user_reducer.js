@@ -1,12 +1,10 @@
 import * as types from './user_types';
+import * as time_types from './../time/time_types';
 
 const initial_state = {
     rotation: 0,
-    list: {
-    }
+    list: {}
 };
-
-const NEW_USER_NAME = 'new_user';
 
 const reducer = (state = initial_state, action) => {
     switch(action.type) {
@@ -38,11 +36,11 @@ const reducer = (state = initial_state, action) => {
                 .map(user => user.name);
             const nextIndex = ( activeUsers.indexOf(state.current) + 1 ) % activeUsers.length;
             const nextUser = activeUsers[nextIndex];
-            const rotation = nextIndex === 0
-                ? (state.rotation + 1)
-                : state.rotation;
+            const rotation = nextIndex === 0 ? (state.rotation + 1) : state.rotation;
 
-            return {...state, ...{current: nextUser, rotation}}
+            const breakTime = (state.rotation%state.settings.breakInterval) === 0;
+
+            return {...state, ...{current: nextUser, rotation, breaking: breakTime}}
         }
         default:
             return state;

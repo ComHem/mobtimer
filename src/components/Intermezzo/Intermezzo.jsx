@@ -40,5 +40,6 @@ class Intermezzo extends Component {
 
 const mapStateToProps = (state) => ({
     secondsLeft: state.time.secondsLeft,
+    breaking: state.time.breaking,
 });
 export default connect(mapStateToProps)(Intermezzo);

@@ -13,8 +13,12 @@ VISIT PUBLIC MOBTIMER ---> http://mobtimer.westeurope.cloudapp.azure.com/
 
 # Installation
 
+```bash
 npm install
+```
+```bash
 npm start
+```
 
 # Todos
 Done

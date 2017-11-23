@@ -46,6 +46,7 @@ class App extends Component {
         return (
             <div className={`App ${showSettings ? 'App--pane-open' : ''}`}>
                 <div className="App-mainView">
+                    <div className="background"/>
                     <UserList/>
                     <CountDownWrapper/>
                     <Notification/>
@@ -66,6 +67,7 @@ class App extends Component {
 }
 
 const mapStateToProps = (state) => ({
+    settings: state.settings.settings,
     rotation: state.user.rotation,
     breaking: state.time.breaking,
     current: state.user.current,

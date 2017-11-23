@@ -9,11 +9,12 @@
 }
 
 .user-list__user {
+    box-shadow: -10px 10px 30px rgba(0, 0, 0, 0.4);
     display: flex;
     width: 80px;
     height: 80px;
     border-radius: 50%;
-    border: 1px solid gold;
+    border: 2px solid #ff3c3f;
     margin: 15px;
     transition: all 100ms linear;
 }
@@ -29,7 +30,7 @@
 }
 
 .user-list__user--current {
-    color: #0f0;
+    color: #61fc4f;
     -webkit-transform: scale(1.4, 1.4);
     -moz-transform: scale(1.4, 1.4);
     -ms-transform: scale(1.4, 1.4);
@@ -39,6 +40,7 @@
 }
 
 .user-list__user__name {
+    text-shadow: #000 0 0 1px;
     align-self: flex-end;
     margin: 0 auto -25px;
     font-size: 20px;

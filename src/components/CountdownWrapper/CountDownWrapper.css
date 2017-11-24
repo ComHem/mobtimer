@@ -2,7 +2,6 @@
     position: relative;
 }
 
-
 .countdown-wrapper__play-btn {
     position: absolute;
     background: url("../../images/play-button.svg") no-repeat;
@@ -13,6 +12,7 @@
     top: 40%;
     transform: translateY(-50%) translateX(-40%);
 }
+
 .countdown-wrapper__next-btn {
     background: url("../../images/fast-forward.svg") no-repeat;
     background-size: cover;
@@ -33,9 +33,17 @@
 }
 
 .countdown-wrapper__clock-wrapper {
+    border-radius: 50%;
     position: relative;
     margin: 0 auto;
     cursor: pointer;
+}
+
+.blur {
+    filter: blur(60px);
+    background: rgba(78, 205, 196, 0.3);
+    width: 100%;
+    height: 100%;
 }
 
 .react-countdown-clock {

@@ -97,13 +97,14 @@ class CountDownWrapper extends Component {
                         seconds={sessionLength}
                         weight={50}
                         showMilliseconds={false}
-                        color="#0f0"
+                        color="#C7F464"
                         alpha={0.95}
                         size={size}
                         onComplete={this.onComplete}
                         paused={this.state.pause}
                         pausedText=""
                     />
+                    <div className="blur"/>
                 </div>}
                 <div className="countdown-wrapper__next-btn" onClick={this.nextUser}/>
             </div>

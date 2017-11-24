@@ -14,14 +14,15 @@ class CountDownWrapper extends Component {
         this.alarm.loop = true;
 
         this.elevator = new Audio(elevator);
+        this.elevator.volume = 1;
         this.elevator.loop = true;
-    }
 
-    state = {
-        show: true,
-        completed: false,
-        pause: false
-    };
+        this.state = {
+            show: true,
+            completed: false,
+            pause: false
+        };
+    }
 
     componentWillReceiveProps(nextProps) {
         if (nextProps.sessionLength !== this.props.sessionLength || (nextProps.current !== this.props.current && this.props.completed)) {
@@ -104,7 +105,7 @@ class CountDownWrapper extends Component {
                         paused={this.state.pause}
                         pausedText=""
                     />
-                    <div className="blur"/>
+                    <div className={`blur ${this.state.pause && '--paused'}`}/>
                 </div>}
                 <div className="countdown-wrapper__next-btn" onClick={this.nextUser}/>
             </div>

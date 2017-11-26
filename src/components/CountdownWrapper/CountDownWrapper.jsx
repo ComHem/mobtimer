@@ -96,7 +96,7 @@ class CountDownWrapper extends Component {
 
                     <ReactCountdownClock
                         seconds={sessionLength}
-                        weight={60}
+                        weight={70}
                         showMilliseconds={false}
                         color="#C7F464"
                         alpha={1}

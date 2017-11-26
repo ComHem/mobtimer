@@ -83,7 +83,7 @@ class CountDownWrapper extends Component {
 
 
     render() {
-        const {sessionLength} = this.props;
+        const sessionLength = +this.props.sessionLength * 60;
         const size = 450;
 
         return (
@@ -95,7 +95,7 @@ class CountDownWrapper extends Component {
                      onClick={this.state.completed ? this.resetTimer : this.pauseTimer}>
 
                     <ReactCountdownClock
-                        seconds={+sessionLength * 10}
+                        seconds={sessionLength}
                         weight={60}
                         showMilliseconds={false}
                         color="#C7F464"

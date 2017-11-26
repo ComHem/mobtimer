@@ -81,9 +81,13 @@ class CountDownWrapper extends Component {
         this.resetTimer();
     };
 
+    getTimerStateClass() {
+        return this.state.pause ? '--paused' : '--playing';
+    }
 
     render() {
         const sessionLength = +this.props.sessionLength * 60;
+        const color = this.state.pause ? "#FF6B6B": "#C7F464";
         const size = 450;
 
         return (
@@ -98,13 +102,13 @@ class CountDownWrapper extends Component {
                         seconds={sessionLength}
                         weight={70}
                         showMilliseconds={false}
-                        color="#C7F464"
+                        color={color}
                         alpha={1}
                         size={size}
                         onComplete={this.onComplete}
                         paused={this.state.pause}
                         pausedText="" />
-                    <div className={`blur ${this.state.pause && '--paused'}`}/>
+                    <div className={`blur ${this.getTimerStateClass()}`}/>
                 </div>}
                 <div className="countdown-wrapper__next-btn" onClick={this.nextUser}/>
             </div>

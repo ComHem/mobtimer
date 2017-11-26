@@ -1,6 +1,6 @@
 import React from 'react';
 import {connect} from 'react-redux';
-import {setSecondsLeft, decrementSeconds, setBreaking, setRunning} from '../../redux/time/time_actions';
+import {setSecondsLeft, decrementSeconds, setBreakTime, setRunning} from '../../redux/time/time_actions';
 import Icon from "../Icon/Icon";
 
 class TimeControl extends React.Component {
@@ -46,7 +46,7 @@ class TimeControl extends React.Component {
     onTimeEnd() {
         this.onStopTimer();
         if (this.props.breaking) {
-            this.props.dispatch(setBreaking(false));
+            this.props.dispatch(setBreakTime(false));
             this.resetTimer();
         }
         else if (this.props.onTime) {
@@ -63,7 +63,7 @@ class TimeControl extends React.Component {
         }
         if (this.props.rotation !== nextProps.rotation && !(nextProps.rotation % this.props.breakInterval)) {
             this.props.dispatch(setSecondsLeft(this.props.breakTime));
-            this.props.dispatch(setBreaking(true));
+            this.props.dispatch(setBreakTime(true));
         } else if (this.props.secondsLeft !== nextProps.secondsLeft && nextProps.secondsLeft === 0) {
             this.onTimeEnd();
         }

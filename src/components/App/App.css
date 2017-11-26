@@ -110,6 +110,11 @@ footer {
     bottom: 0;
 }
 
+footer img {
+    width: 150px;
+    margin: 25px;
+}
+
 @keyframes App-logo-spin {
     from {
         transform: rotate(0deg);

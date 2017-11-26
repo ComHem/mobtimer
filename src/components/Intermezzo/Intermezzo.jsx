@@ -1,12 +1,22 @@
 import React, {Component} from 'react';
 import {connect} from 'react-redux';
 import VideoPlayer from 'react-youtube-player';
-import {setBreaking} from '../../redux/time/time_actions';
+import {setBreaking} from '../../redux/user/user_actions';
 import './Intermezzo.css';
 
 class Intermezzo extends Component {
     constructor() {
         super();
+    }
+
+    componentDidMount() {
+        this.setState({
+            secondsLeft: this.props.secondsLeft
+        }, () => {
+            setTimeout(() => {
+                this.props.dispatch(setBreaking(false))
+            }, +this.props.secondsLeft * 1000);
+        });
     }
 
     render() {
@@ -30,8 +40,11 @@ class Intermezzo extends Component {
                         }}/>
                 </div>
                 <div className="intermezzo__content">
-                    <p>{secondsLeft} sekunder kvar</p>
-                    <button onClick={() => dispatch(setBreaking(false))}>Fortsätt</button>
+                    <p>{secondsLeft} seconds left of break</p>
+
+                    <button onClick={() => dispatch(setBreaking(false))}>
+                        Continue
+                    </button>
                 </div>
             </div>
         )
@@ -40,5 +53,6 @@ class Intermezzo extends Component {
 
 const mapStateToProps = (state) => ({
     secondsLeft: state.time.secondsLeft,
+    breakTime: state.settings.breakTime,
 });
 export default connect(mapStateToProps)(Intermezzo);

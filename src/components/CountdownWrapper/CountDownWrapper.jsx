@@ -63,7 +63,7 @@ class CountDownWrapper extends Component {
             setTimeout(this.playAlarm, 13000);
         });
 
-        this.props.dispatch(nextUser());
+        this.props.dispatch(nextUser(this.props.settings.breakInterval));
     };
 
     pauseTimer = () => {
@@ -74,7 +74,7 @@ class CountDownWrapper extends Component {
     };
 
     nextUser = () => {
-        this.props.dispatch(nextUser());
+        this.props.dispatch(nextUser(this.props.settings.breakInterval));
         this.setState({
             pause: true
         });
@@ -84,27 +84,26 @@ class CountDownWrapper extends Component {
 
     render() {
         const {sessionLength} = this.props;
-        const size = 400;
+        const size = 450;
 
         return (
             <div className="countdown-wrapper">
-                {this.state.completed && <div className="countdown-wrapper__play-btn"/>}
-                {this.state.pause && <div className="countdown-wrapper__play-btn"/>}
+                {this.state.completed || this.state.pause && <div className="countdown-wrapper__play-btn"/>}
+
                 {this.state.show &&
                 <div className="countdown-wrapper__clock-wrapper" style={{width: `${size}px`, height: `${size}px`}}
                      onClick={this.state.completed ? this.resetTimer : this.pauseTimer}>
 
                     <ReactCountdownClock
-                        seconds={sessionLength}
-                        weight={50}
+                        seconds={+sessionLength * 10}
+                        weight={60}
                         showMilliseconds={false}
                         color="#C7F464"
-                        alpha={0.95}
+                        alpha={1}
                         size={size}
                         onComplete={this.onComplete}
                         paused={this.state.pause}
-                        pausedText=""
-                    />
+                        pausedText="" />
                     <div className={`blur ${this.state.pause && '--paused'}`}/>
                 </div>}
                 <div className="countdown-wrapper__next-btn" onClick={this.nextUser}/>
@@ -114,6 +113,8 @@ class CountDownWrapper extends Component {
 }
 
 const mapStateToProps = (state) => ({
+    breaking: state.user.breaking,
+    settings: state.settings,
     sessionLength: state.settings.sessionLength,
     running: state.time.running,
     current: state.user.current

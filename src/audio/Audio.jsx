@@ -17,7 +17,7 @@ import party_boy from "./tracks/party_boy.mp3";
 
 let currentVolume = 1;
 
-const sounds = [burned, chewbacca, cricket, doh, hadouken, incorrect, lightsaber, metalGearSolid, nooo, shoryuken, saxguy, wakawaka];
+const sounds = [burned, chewbacca, cricket, doh, hadouken, incorrect, lightsaber, metalGearSolid, nooo, shoryuken, wakawaka];
 const tracks = [alarm, alarm, party_boy, alarm, alarm, alarm];
 
 export const randomSound = () => {

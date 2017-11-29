@@ -1,5 +1,5 @@
 
-# The most awesome mobtimer of all time! - "Pärtan"
+# "This mobtimer is ok" - Pärtan
 #####
 #
 VISIT PUBLIC MOBTIMER ---> http://mobtimer.westeurope.cloudapp.azure.com/

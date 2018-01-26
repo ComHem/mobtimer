@@ -5,7 +5,6 @@ import {persistStore, autoRehydrate} from 'redux-persist'
 import {Provider} from 'react-redux';
 import './index.css';
 import App from './components/App/App';
-import registerServiceWorker from './registerServiceWorker';
 import reducers from './redux/reducers';
 
 const store = createStore(
@@ -21,5 +20,3 @@ persistStore(store);
 ReactDOM.render((
     <Provider store={store}><App/></Provider>
 ), document.getElementById('root'));
-
-registerServiceWorker();

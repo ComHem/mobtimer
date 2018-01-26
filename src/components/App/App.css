@@ -13,7 +13,7 @@
     font-size: 32px;
 }
 .background {
-    background: url("../../images/background-0.png") no-repeat;
+    background: url("../../images/background-1.png") no-repeat;
     background-image-position: fixed;
     background-size: cover;
     transform: translate3d(0px, 0, 0);

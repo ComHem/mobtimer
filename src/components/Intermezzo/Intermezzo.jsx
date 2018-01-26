@@ -1,40 +1,40 @@
 import React, {Component} from 'react';
 import {connect} from 'react-redux';
-import VideoPlayer from 'react-youtube-player';
-import {setBreaking} from '../../redux/user/user_actions';
+import _ from 'lodash';
+
 import CountDownWrapper from "../CountdownWrapper/CountDownWrapper";
 import './Intermezzo.css';
 
 class Intermezzo extends Component {
-    closeIntermezzo = () => {
-        this.props.dispatch(setBreaking(false));
-    };
+    randomGfycatVideo() {
+        const videos = [
+            'CheapCookedDungbeetle',
+            'HandmadeInsignificantHind',
+            'ShadowyCraftyEmperorshrimp',
+            'ExemplaryFrailIaerismetalmark',
+            'LavishUncommonAcornbarnacle',
+        ];
+        return _.sample(videos);
+    }
 
     render() {
         const {sessionLength} = this.props;
         return (
             <div className="intermezzo">
                 <div className="video-background">
-                    <VideoPlayer
-                        videoId="fRscYVvEFt8"
-                        playbackState='playing'
-                        configuration={{
-                            autoplay: 1,
-                            loop: 1,
-                            showinfo: 0,
-                            disablekb: 1,
-                            fs: 0,
-                            rel: 0,
-                            modestbranding: 1,
-                            controls: 0,
-                            volume: 0,
-                        }}/>
+                    <div style={{position: 'absolute', left: 0, top: 0, right: 0, bottom: 0}}>
+                        <iframe src={`https://gfycat.com/ifr/${this.randomGfycatVideo()}`}
+                                frameBorder={0}
+                                scrolling='no'
+                                width='100%'
+                                height='100%'/>
+                    </div>
                 </div>
                 <div className="intermezzo__content">
-                    <CountDownWrapper />
+                    <CountDownWrapper/>
                 </div>
             </div>
-        )
+        );
     }
 }
 

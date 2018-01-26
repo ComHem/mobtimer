@@ -1,6 +1,6 @@
 import React from 'react';
 import {connect} from 'react-redux';
-import {setSecondsLeft, decrementSeconds, setBreakTime, setRunning} from '../../redux/time/time_actions';
+import {setSecondsLeft, decrementSeconds, setbreaking, setRunning} from '../../redux/time/time_actions';
 import Icon from "../Icon/Icon";
 
 class TimeControl extends React.Component {
@@ -46,7 +46,7 @@ class TimeControl extends React.Component {
     onTimeEnd() {
         this.onStopTimer();
         if (this.props.breaking) {
-            this.props.dispatch(setBreakTime(false));
+            this.props.dispatch(setbreaking(false));
             this.resetTimer();
         }
         else if (this.props.onTime) {
@@ -62,8 +62,8 @@ class TimeControl extends React.Component {
             this.onStopTimer();
         }
         if (this.props.rotation !== nextProps.rotation && !(nextProps.rotation % this.props.breakInterval)) {
-            this.props.dispatch(setSecondsLeft(this.props.breakTime));
-            this.props.dispatch(setBreakTime(true));
+            this.props.dispatch(setSecondsLeft(this.props.breaking));
+            this.props.dispatch(setbreaking(true));
         } else if (this.props.secondsLeft !== nextProps.secondsLeft && nextProps.secondsLeft === 0) {
             this.onTimeEnd();
         }
@@ -87,7 +87,6 @@ const mapStateToProps = (state) => ({
     running: state.time.running,
     secondsLeft: state.time.secondsLeft,
     sessionLength: state.settings.sessionLength,
-    breakTime: state.settings.breakTime,
 });
 
 export default connect(mapStateToProps)(TimeControl);

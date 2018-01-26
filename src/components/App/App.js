@@ -38,8 +38,9 @@ class App extends Component {
     }
 
     renderView() {
-        //this.props.breaking
-        if (false) {
+        const size = 450;
+
+        if (this.props.breaking) {
             return (<Intermezzo/>);
         } else {
             return (
@@ -54,12 +55,9 @@ class App extends Component {
 
     getBreakText() {
         const {breakInterval, rotation} = this.props;
-        const breakInNRounds = (breakInterval%rotation) - rotation;
-        let text = `Break in ${breakInterval - rotation} rotations`;
-        if (breakInNRounds <= 1) {
-            text = `Break next rotation!`;
-        }
-        return null;
+        const breakInNRounds = (breakInterval%rotation);
+        let text = `Break every ${breakInNRounds} rotations`;
+        return text;
     }
 
     render() {

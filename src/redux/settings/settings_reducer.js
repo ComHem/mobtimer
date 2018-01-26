@@ -3,11 +3,11 @@ import * as types from './settings_types';
 const initial_state = {
     sessionLength: 10,
     breakInterval: 4,
-    breakTime: 5,
+    breaking: 5,
     strings: {
         sessionLength: 'Length of each turn (min)',
         breakInterval: 'Break every (n) round',
-        breakTime: 'Length of breaks (sec)'
+        breaking: 'Length of breaks (sec)'
     }
 };
 

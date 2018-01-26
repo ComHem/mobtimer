@@ -3,20 +3,15 @@ import {connect} from 'react-redux';
 import VideoPlayer from 'react-youtube-player';
 import {setBreaking} from '../../redux/user/user_actions';
 import './Intermezzo.css';
+import CountDownWrapper from "../CountdownWrapper/CountDownWrapper";
 
 class Intermezzo extends Component {
-    componentDidMount() {
-        this.setState({
-            secondsLeft: this.props.secondsLeft
-        }, () => {
-            setTimeout(() => {
-                this.props.dispatch(setBreaking(false))
-            }, +this.props.secondsLeft * 1000);
-        });
-    }
+    closeIntermezzo = () => {
+        this.props.dispatch(setBreaking(false));
+    };
 
     render() {
-        const {secondsLeft, dispatch} = this.props;
+        const {sessionLength} = this.props;
         return (
             <div className="intermezzo">
                 <div className="video-background">
@@ -36,11 +31,17 @@ class Intermezzo extends Component {
                         }}/>
                 </div>
                 <div className="intermezzo__content">
-                    <p>{secondsLeft} seconds left of break</p>
-
-                    <button onClick={() => dispatch(setBreaking(false))}>
-                        Continue
-                    </button>
+                    <CountDownWrapper
+                        seconds={sessionLength}
+                        weight={70}
+                        showMilliseconds={false}
+                        color={""}
+                        alpha={1}
+                        onComplete={this.closeIntermezzo}
+                        paused={false}
+                        pausedText=""
+                    />
+                    <button onClick={this.closeIntermezzo}/>
                 </div>
             </div>
         )
@@ -48,7 +49,7 @@ class Intermezzo extends Component {
 }
 
 const mapStateToProps = (state) => ({
-    secondsLeft: state.time.secondsLeft,
-    breakTime: state.settings.breakTime,
+    sessionLength: state.settings.sessionLength,
+    breaking: state.settings.breaking,
 });
 export default connect(mapStateToProps)(Intermezzo);

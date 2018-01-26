@@ -25,6 +25,10 @@ class CountDownWrapper extends Component {
         };
     }
 
+    componentDidMount() {
+        this.changeFavicon();
+    }
+
     componentWillReceiveProps(nextProps) {
         if (nextProps.sessionLength !== this.props.sessionLength || (nextProps.current !== this.props.current && this.props.completed)) {
             this.resetTimer();
@@ -75,12 +79,6 @@ class CountDownWrapper extends Component {
     };
 
     changeFavicon = () => {
-        _.each(document.head.getElementsByTagName('link'), (link) => {
-            if (link) {
-                document.head.removeChild(link);
-            }
-        });
-
         const favicon = "/favicon.ico";
         const faviconPaused = "/favicon--paused.png";
 

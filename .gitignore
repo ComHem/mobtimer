@@ -5,3 +5,4 @@
 /mobtimer.iml
 /package-lock.json
 /.idea
+*/.DS_Store

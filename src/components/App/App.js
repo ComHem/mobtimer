@@ -7,9 +7,8 @@ import Notification from '../Notification/Notification.jsx';
 import CountDownWrapper from '../CountdownWrapper/CountDownWrapper.jsx';
 import SettingsView from '../SettingsView/SettingsView';
 import {nextUser} from '../../redux/user/user_actions';
-import {setBreaking} from '../../redux/time/time_actions';
 import Icon from '../Icon/Icon';
-import logo from '../../images/comhem_logo.png';
+import logo from '../../images/com_hem_logo.png';
 
 class App extends Component {
     constructor() {
@@ -27,38 +26,64 @@ class App extends Component {
     }
 
     onTime() {
-        this.props.dispatch(nextUser());
+        this.props.dispatch(nextUser(this.props.settings.breakInterval));
     }
 
     onNextUser() {
-        this.props.dispatch(nextUser());
-        this.props.dispatch((setBreaking()));
+        this.props.dispatch(nextUser(this.props.settings.breakInterval));
     }
 
     onToggleSettings() {
         this.setState({showSettings: !this.state.showSettings});
     }
 
+    renderView() {
+        //this.props.breaking
+        if (false) {
+            return (<Intermezzo/>);
+        } else {
+            return (
+                <div>
+                    <UserList/>
+                    <CountDownWrapper/>
+                    <Notification/>
+                </div>
+            )
+        }
+    }
+
+    getBreakText() {
+        const {breakInterval, rotation} = this.props;
+        const breakInNRounds = (breakInterval%rotation) - rotation;
+        let text = `Break in ${breakInterval - rotation} rotations`;
+        if (breakInNRounds <= 1) {
+            text = `Break next rotation!`;
+        }
+        return null;
+    }
+
     render() {
-        const {rotation, breaking} = this.props;
+        const {rotation, breakInterval} = this.props;
         const {showSettings} = this.state;
 
         return (
             <div className={`App ${showSettings ? 'App--pane-open' : ''}`}>
                 <div className="App-mainView">
-                    <UserList/>
-                    <CountDownWrapper/>
-                    <Notification/>
-                    <div><h4>Current rotation: {rotation} </h4></div>
+                    <div className="background"/>
+                    {this.renderView()}
                 </div>
-                <Icon icon='forward' size="large" onClick={this.onNextUser}/>
                 <Icon icon='settings' onClick={this.onToggleSettings}
                       className={`App-settings-button App-settings-button--${showSettings ? 'open' : 'closed'}`}/>
-                {breaking && <Intermezzo/>}
+
+                <div className="rotation">
+                    <h2>Current rotation: {rotation}</h2>
+                    <h3>{this.getBreakText()}</h3>
+                </div>
+
                 <SettingsView className={showSettings ? 'App-settings App-settings--open' : 'App-settings'}/>
 
                 <footer>
-                    <img src={logo} alt="" />
+                    <img src={logo} alt=""/>
                 </footer>
             </div>
         );
@@ -66,8 +91,9 @@ class App extends Component {
 }
 
 const mapStateToProps = (state) => ({
+    breakInterval: state.settings.breakInterval,
     rotation: state.user.rotation,
-    breaking: state.time.breaking,
+    breaking: state.user.breaking,
     current: state.user.current,
 });
 export default connect(mapStateToProps)(App);

@@ -9,11 +9,12 @@
 }
 
 .user-list__user {
+    box-shadow: -10px 10px 30px rgba(85, 98, 112, 0.4);
     display: flex;
     width: 80px;
     height: 80px;
     border-radius: 50%;
-    border: 1px solid gold;
+    border: 2px solid rgb(255, 107, 107);
     margin: 15px;
     transition: all 100ms linear;
 }
@@ -24,12 +25,14 @@
 }
 
 .user-list__user--inactive {
+    border-color: rgb(85, 98, 112);
     color: #ccc;
     opacity: .45;
 }
 
 .user-list__user--current {
-    color: #0f0;
+    color: #61fc4f;
+    border-color: #61fc4f;
     -webkit-transform: scale(1.4, 1.4);
     -moz-transform: scale(1.4, 1.4);
     -ms-transform: scale(1.4, 1.4);
@@ -39,6 +42,7 @@
 }
 
 .user-list__user__name {
+    text-shadow: #000 0 0 1px;
     align-self: flex-end;
     margin: 0 auto -25px;
     font-size: 20px;
@@ -47,7 +51,6 @@
     overflow: hidden;
     text-overflow: ellipsis;
 }
-
 
 .user-list__remove-btn {
     width: 24px;
@@ -70,11 +73,15 @@
     width: 109px;
     margin-bottom: -20px;
     margin-left: -25px;
-    -webkit-transform: rotate(-22deg);
-    -ms-transform: rotate(-22deg);
     transform: rotate(-22deg);
     position: relative;
     z-index: 2;
+    transition: all .5s;
+}
+
+.pointer:hover .user-list__user-image {
+    transform: rotate(0deg);
+    margin-left: 0;
 }
 
 .user-list__user--0 {

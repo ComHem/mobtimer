@@ -50,9 +50,9 @@ class SettingsView extends React.Component {
                 {this.renderFields()}
 
                 <form onSubmit={this.onFormSubmit}>
-                    <h3>Lägg till person</h3>
+                    <h3>Add a new person</h3>
                     <input id="name" ref={(ref) => this.name = ref}/>
-                    <button>Lägg till</button>
+                    <button>Add</button>
                 </form>
             </div>
         )

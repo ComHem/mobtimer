@@ -52,6 +52,16 @@ class App extends Component {
         }
     }
 
+    getBreakText() {
+        const {breakInterval, rotation} = this.props;
+        const breakInNRounds = (breakInterval%rotation) - rotation;
+        let text = `Break in ${breakInterval - rotation} rotations`;
+        if (breakInNRounds <= 1) {
+            text = `Break next rotation!`;
+        }
+        return null;
+    }
+
     render() {
         const {rotation, breakInterval} = this.props;
         const {showSettings} = this.state;
@@ -67,6 +77,7 @@ class App extends Component {
 
                 <div className="rotation">
                     <h2>Current rotation: {rotation}</h2>
+                    <h3>{this.getBreakText()}</h3>
                 </div>
 
                 <SettingsView className={showSettings ? 'App-settings App-settings--open' : 'App-settings'}/>

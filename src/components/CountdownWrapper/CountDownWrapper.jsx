@@ -25,10 +25,6 @@ class CountDownWrapper extends Component {
         };
     }
 
-    componentDidMount() {
-        this.changeFavicon();
-    }
-
     componentWillReceiveProps(nextProps) {
         if (nextProps.sessionLength !== this.props.sessionLength || (nextProps.current !== this.props.current && this.props.completed)) {
             this.resetTimer();

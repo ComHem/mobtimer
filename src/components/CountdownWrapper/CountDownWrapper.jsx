@@ -79,6 +79,8 @@ class CountDownWrapper extends Component {
     };
 
     changeFavicon = () => {
+        return false;
+        // TEST.
         const links = document.head.getElementsByTagName('link');
         _.each(links, (link) => {
             if (link) {

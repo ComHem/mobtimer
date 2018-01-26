@@ -1,7 +1,7 @@
 import * as types from './settings_types';
 
 const initial_state = {
-    sessionLength: 60,
+    sessionLength: 10,
     breakInterval: 4,
     breakTime: 5,
     strings: {

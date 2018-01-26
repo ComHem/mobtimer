@@ -1,12 +1,10 @@
 import React, {Component} from 'react';
 import ReactCountdownClock from 'react-countdown-clock';
-import _ from 'lodash';
 import {connect} from 'react-redux';
-import {nextUser} from '../../redux/user/user_actions';
+import {nextUser, setBreaking} from '../../redux/user/user_actions';
 import elevator from "../../audio/tracks/elevator_jazz.mp3";
 import {randomSound, randomAlarmTrack} from "../../audio/Audio";
 import './CountDownWrapper.css';
-
 
 class CountDownWrapper extends Component {
     constructor(props) {
@@ -65,7 +63,7 @@ class CountDownWrapper extends Component {
         this.setState({
             completed: true
         }, () => {
-            setTimeout(this.playAlarm, 13000);
+            setTimeout(this.playAlarm, 10000);
         });
 
         this.props.dispatch(nextUser(this.props.settings.breakInterval));
@@ -95,6 +93,11 @@ class CountDownWrapper extends Component {
     };
 
     nextUser = () => {
+        if (this.props.breaking) {
+            this.props.dispatch(setBreaking(false));
+            return;
+        }
+
         this.props.dispatch(nextUser(this.props.settings.breakInterval));
         this.setState({
             pause: true

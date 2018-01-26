@@ -2,8 +2,8 @@ import React, {Component} from 'react';
 import {connect} from 'react-redux';
 import VideoPlayer from 'react-youtube-player';
 import {setBreaking} from '../../redux/user/user_actions';
-import './Intermezzo.css';
 import CountDownWrapper from "../CountdownWrapper/CountDownWrapper";
+import './Intermezzo.css';
 
 class Intermezzo extends Component {
     closeIntermezzo = () => {
@@ -31,17 +31,7 @@ class Intermezzo extends Component {
                         }}/>
                 </div>
                 <div className="intermezzo__content">
-                    <CountDownWrapper
-                        seconds={sessionLength}
-                        weight={70}
-                        showMilliseconds={false}
-                        color={""}
-                        alpha={1}
-                        onComplete={this.closeIntermezzo}
-                        paused={false}
-                        pausedText=""
-                    />
-                    <button onClick={this.closeIntermezzo}/>
+                    <CountDownWrapper />
                 </div>
             </div>
         )

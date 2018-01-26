@@ -38,8 +38,6 @@ class App extends Component {
     }
 
     renderView() {
-        const size = 450;
-
         if (this.props.breaking) {
             return (<Intermezzo/>);
         } else {

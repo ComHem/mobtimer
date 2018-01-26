@@ -5,10 +5,6 @@ import {setBreaking} from '../../redux/user/user_actions';
 import './Intermezzo.css';
 
 class Intermezzo extends Component {
-    constructor() {
-        super();
-    }
-
     componentDidMount() {
         this.setState({
             secondsLeft: this.props.secondsLeft

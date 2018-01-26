@@ -1,10 +1,11 @@
 import React, {Component} from 'react';
 import ReactCountdownClock from 'react-countdown-clock';
+import _ from 'lodash';
 import {connect} from 'react-redux';
 import {nextUser} from '../../redux/user/user_actions';
-import './CountDownWrapper.css';
 import elevator from "../../audio/tracks/elevator_jazz.mp3";
 import {randomSound, randomAlarmTrack} from "../../audio/Audio";
+import './CountDownWrapper.css';
 
 
 class CountDownWrapper extends Component {
@@ -22,6 +23,10 @@ class CountDownWrapper extends Component {
             completed: false,
             pause: false
         };
+    }
+
+    componentDidMount() {
+        this.changeFavicon();
     }
 
     componentWillReceiveProps(nextProps) {
@@ -70,7 +75,30 @@ class CountDownWrapper extends Component {
         this.state.pause ? this.elevator.pause() : this.elevator.play();
         this.setState({
             pause: !this.state.pause
+        }, this.changeFavicon());
+    };
+
+    changeFavicon = () => {
+        const links = document.head.getElementsByTagName('link');
+        _.each(links, (link) => {
+            if (link) {
+                document.head.removeChild(link);
+            }
         });
+
+        const favicon = "/favicon.ico";
+        const faviconPaused = "/favicon--paused.png";
+
+        let link = document.createElement('link'),
+            oldLink = document.getElementById('dynamic-favicon');
+        link.id = 'dynamic-favicon';
+        link.rel = 'icon';
+        link.href = this.state.pause ? favicon : faviconPaused;
+
+        if (oldLink) {
+            document.head.removeChild(oldLink);
+        }
+        document.head.appendChild(link);
     };
 
     nextUser = () => {

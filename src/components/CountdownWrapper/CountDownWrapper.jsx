@@ -4,6 +4,9 @@ import {connect} from 'react-redux';
 import {nextUser, setBreaking} from '../../redux/user/user_actions';
 import elevator from "../../audio/tracks/elevator_jazz.mp3";
 import {randomSound, randomAlarmTrack} from "../../audio/Audio";
+import FontAwesomeIcon from '@fortawesome/react-fontawesome';
+import faPlay from '@fortawesome/fontawesome-free-solid/faPlay';
+
 import './CountDownWrapper.css';
 
 
@@ -133,18 +136,22 @@ class CountDownWrapper extends Component {
 
     render() {
         const sessionLength = +this.props.sessionLength * 60;
-        const size = 450;
+        const size = 360;
 
         return (
             <div className="countdown-wrapper">
-                {this.state.completed || this.state.pause && <div className="countdown-wrapper__play-btn"/>}
+                {this.state.completed || this.state.pause &&
+                <div className="countdown-wrapper__play-btn">
+                    <FontAwesomeIcon icon={faPlay} size="3x" />
+                </div>
+                }
                 {this.state.show &&
                 <div className="countdown-wrapper__clock-wrapper" style={{width: `${size}px`, height: `${size}px`}}>
                     <div className="countdown-wrapper__clock"
                          onClick={this.state.completed ? this.resetTimer : this.pauseTimer}>
                         <ReactCountdownClock
                             seconds={sessionLength}
-                            weight={70}
+                            weight={45}
                             showMilliseconds={false}
                             color={this.getColorState().color}
                             alpha={1}

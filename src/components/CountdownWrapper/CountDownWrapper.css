@@ -12,8 +12,6 @@
 
 .countdown-wrapper__play-btn {
     position: absolute;
-    background: url("../../images/play-button.svg") no-repeat;
-    background-size: cover;
     height: 120px;
     width: 120px;
     left: 50%;
@@ -80,12 +78,7 @@
     animation-direction: alternate;
 }
 
-.blur.--playing {
-    animation-name: slidein-small;
-    animation-duration: 5s;
-    animation-iteration-count: infinite;
-    animation-direction: alternate;
-}
+.blur.--playing {}
 
 @keyframes slidein-small {
     from {

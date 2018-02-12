@@ -111,27 +111,30 @@ class CountDownWrapper extends Component {
 
     render() {
         const sessionLength = +this.props.sessionLength * 60;
-        const color = this.state.pause ? "#FF6B6B": "#C7F464";
+        const color = this.state.pause ? "#FF6B6B" : "#C7F464";
         const size = 450;
 
         return (
             <div className="countdown-wrapper">
-                {this.state.completed || this.state.pause && <div className="countdown-wrapper__play-btn"/>}
+                {this.state.completed || this.state.pause && <div className="countdown-wrapper__play-btn"/>}
 
                 {this.state.show &&
-                <div className="countdown-wrapper__clock-wrapper" style={{width: `${size}px`, height: `${size}px`}}
-                     onClick={this.state.completed ? this.resetTimer : this.pauseTimer}>
-
-                    <ReactCountdownClock
-                        seconds={sessionLength}
-                        weight={70}
-                        showMilliseconds={false}
-                        color={color}
-                        alpha={1}
-                        size={size}
-                        onComplete={this.onComplete}
-                        paused={this.state.pause}
-                        pausedText="" />
+                <div className="countdown-wrapper__clock-wrapper" style={{width: `${size}px`, height: `${size}px`}}>
+                    <div className="countdown-wrapper__clock"
+                         onClick={this.state.completed ? this.resetTimer : this.pauseTimer}
+                         >
+                        <ReactCountdownClock
+                            seconds={sessionLength}
+                            weight={70}
+                            showMilliseconds={false}
+                            color={color}
+                            alpha={1}
+                            size={size}
+                            onComplete={this.onComplete}
+                            paused={this.state.pause}
+                            pausedText=""
+                        />
+                    </div>
                     <div className={`blur ${this.getTimerStateClass()}`}/>
                 </div>}
                 <div className="countdown-wrapper__next-btn" onClick={this.nextUser}/>

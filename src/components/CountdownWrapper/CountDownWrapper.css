@@ -27,6 +27,8 @@
     height: 80px;
     width: 80px;
     margin: 20px auto;
+    z-index: 99;
+    cursor: pointer;
 }
 
 .countdown-wrapper__pause-btn {
@@ -44,10 +46,19 @@
     border-radius: 50%;
     position: relative;
     margin: 0 auto;
+}
+.countdown-wrapper__clock {
+    border: 1px solid rgba(10, 10, 10, 0.25);
+    position: absolute;
+    border-radius: 50%;
+    width: 100%;
+    height: 100%;
     cursor: pointer;
+    z-index: 100;
 }
 
 .blur {
+    z-index: 0;
     filter: blur(60px);
     background: rgba(78, 205, 196, 0.3);
     width: 100%;

@@ -51,13 +51,6 @@ class App extends Component {
         }
     }
 
-    getBreakText() {
-        const {breakInterval, rotation} = this.props;
-        const breakInNRounds = (breakInterval%rotation);
-
-        return `Break every ${breakInterval} rotations`;
-    }
-
     render() {
         const {rotation, breakInterval} = this.props;
         const {showSettings} = this.state;
@@ -68,15 +61,20 @@ class App extends Component {
                     <div className="background"/>
                     {this.renderView()}
                 </div>
-                <Icon icon='settings' onClick={this.onToggleSettings}
-                      className={`App-settings-button App-settings-button--${showSettings ? 'open' : 'closed'}`}/>
+
+                <Icon icon='settings'
+                      onClick={this.onToggleSettings}
+                      className={`App-settings-button App-settings-button--${showSettings ? 'open' : 'closed'}`}
+                />
 
                 <div className="rotation">
                     <h2>Current rotation: {rotation}</h2>
-                    <h3>{this.getBreakText()}</h3>
+                    <h3>{`Break every ${breakInterval} rotations`}</h3>
                 </div>
 
-                <SettingsView className={showSettings ? 'App-settings App-settings--open' : 'App-settings'}/>
+                <SettingsView
+                    className={showSettings ? 'App-settings App-settings--open' : 'App-settings'}
+                />
 
                 <footer>
                     <img src={logo} alt=""/>

@@ -73,6 +73,13 @@
     animation-direction: alternate;
 }
 
+.blur.--break {
+    animation-name: slidein-small;
+    animation-duration: 5s;
+    animation-iteration-count: infinite;
+    animation-direction: alternate;
+}
+
 .blur.--playing {
     animation-name: slidein-small;
     animation-duration: 5s;

@@ -6,6 +6,7 @@ import elevator from "../../audio/tracks/elevator_jazz.mp3";
 import {randomSound, randomAlarmTrack} from "../../audio/Audio";
 import './CountDownWrapper.css';
 
+
 class CountDownWrapper extends Component {
     constructor(props) {
         super(props);
@@ -21,6 +22,21 @@ class CountDownWrapper extends Component {
             completed: false,
             pause: false
         };
+
+        this.colors = {
+            breaking: {
+                color: '#F8F833',
+                className: '--breaking'
+            },
+            playing: {
+                color: '#C7F464',
+                className: '--playing'
+            },
+            paused: {
+                color: '#FF6B6B',
+                className: '--paused'
+            },
+        }
     }
 
     componentDidMount() {
@@ -105,29 +121,32 @@ class CountDownWrapper extends Component {
         this.resetTimer();
     };
 
-    getTimerStateClass() {
-        return this.state.pause ? '--paused' : '--playing';
+    getColorState() {
+        if (this.props.breaking) {
+            return this.colors.breaking;
+        } else if (this.state.pause) {
+            return this.colors.paused;
+        } else {
+            return this.colors.playing;
+        }
     }
 
     render() {
         const sessionLength = +this.props.sessionLength * 60;
-        const color = this.state.pause ? "#FF6B6B" : "#C7F464";
         const size = 450;
 
         return (
             <div className="countdown-wrapper">
                 {this.state.completed || this.state.pause && <div className="countdown-wrapper__play-btn"/>}
-
                 {this.state.show &&
                 <div className="countdown-wrapper__clock-wrapper" style={{width: `${size}px`, height: `${size}px`}}>
                     <div className="countdown-wrapper__clock"
-                         onClick={this.state.completed ? this.resetTimer : this.pauseTimer}
-                         >
+                         onClick={this.state.completed ? this.resetTimer : this.pauseTimer}>
                         <ReactCountdownClock
                             seconds={sessionLength}
                             weight={70}
                             showMilliseconds={false}
-                            color={color}
+                            color={this.getColorState().color}
                             alpha={1}
                             size={size}
                             onComplete={this.onComplete}
@@ -135,7 +154,7 @@ class CountDownWrapper extends Component {
                             pausedText=""
                         />
                     </div>
-                    <div className={`blur ${this.getTimerStateClass()}`}/>
+                    <div className={`blur ${this.getColorState().className}`}/>
                 </div>}
                 <div className="countdown-wrapper__next-btn" onClick={this.nextUser}/>
             </div>

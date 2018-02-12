@@ -54,8 +54,8 @@ class App extends Component {
     getBreakText() {
         const {breakInterval, rotation} = this.props;
         const breakInNRounds = (breakInterval%rotation);
-        let text = `Break every ${breakInNRounds} rotations`;
-        return text;
+
+        return `Break every ${breakInterval} rotations`;
     }
 
     render() {

@@ -7,13 +7,13 @@ import doh from "./doh.swf.mp3";
 import hadouken from "./hadouken.mp3";
 import incorrect from "./incorrect.swf.mp3";
 import lightsaber from "./lightsaber_02.mp3";
-import saxguy from "./epicsaxguy.mp3";
 import metalGearSolid from "./metalgearsolid.swf.mp3";
 import nooo from "./nooo.swf.mp3";
 import shoryuken from "./shoryuken.mp3";
 import wakawaka from "./wakawaka.swf.mp3";
 
 import party_boy from "./tracks/party_boy.mp3";
+import moment from "moment";
 
 let currentVolume = 1;
 
@@ -33,6 +33,9 @@ export const randomAlarmTrack = () => {
     const max = tracks.length;
     const random = Math.floor(Math.random() * (max - min)) + min;
 
+    if (moment().day() >= 5) {
+        return makeAudioClip(party_boy, 1);
+    }
     return makeAudioClip(tracks[random], 1);
 };
 

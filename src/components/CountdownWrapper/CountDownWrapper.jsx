@@ -25,7 +25,7 @@ class CountDownWrapper extends Component {
 
         this.colors = {
             breaking: {
-                color: '#F8F833',
+                color: '#F8D664',
                 className: '--breaking'
             },
             playing: {

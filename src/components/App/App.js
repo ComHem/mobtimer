@@ -45,7 +45,6 @@ class App extends Component {
                 <div>
                     <UserList/>
                     <CountDownWrapper/>
-                    <Notification/>
                 </div>
             )
         }

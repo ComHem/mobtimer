@@ -1,5 +1,3 @@
-import alarm from "./alarm.ogg";
-
 import burned from "./burned.swf.mp3";
 import chewbacca from "./chewbacca.swf.mp3";
 import cricket from "./crickets.swf.mp3";
@@ -12,31 +10,24 @@ import nooo from "./nooo.swf.mp3";
 import shoryuken from "./shoryuken.mp3";
 import wakawaka from "./wakawaka.swf.mp3";
 
+import alarm from "./alarm.ogg";
 import party_boy from "./tracks/party_boy.mp3";
 import moment from "moment";
+import _ from 'lodash';
 
 let currentVolume = 1;
 
 const sounds = [burned, chewbacca, cricket, doh, hadouken, incorrect, lightsaber, metalGearSolid, nooo, shoryuken, wakawaka];
 const tracks = [alarm, alarm, party_boy, alarm, alarm, alarm];
 
-export const randomSound = () => {
-    const min = 0;
-    const max = sounds.length;
-    const random = Math.floor(Math.random() * (max - min)) + min;
-
-    return makeAudioClip(sounds[random], 0.8);
-};
+export const randomSound = () => makeAudioClip(_.sample(sounds), (currentVolume - 0.2));
 
 export const randomAlarmTrack = () => {
-    const min = 0;
-    const max = tracks.length;
-    const random = Math.floor(Math.random() * (max - min)) + min;
-
     if (moment().day() >= 5) {
         return makeAudioClip(party_boy, 1);
     }
-    return makeAudioClip(tracks[random], 1);
+
+    return makeAudioClip(_.sample(tracks), currentVolume);
 };
 
 export const toggleAudio = () => {

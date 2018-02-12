@@ -6,7 +6,7 @@ import CountDownWrapper from "../CountdownWrapper/CountDownWrapper";
 import './Intermezzo.css';
 
 class Intermezzo extends Component {
-    randomGfycatVideo() {
+    randomGfycatVideo = () => {
         const videos = [
             'CheapCookedDungbeetle',
             'HandmadeInsignificantHind',
@@ -15,10 +15,9 @@ class Intermezzo extends Component {
             'LavishUncommonAcornbarnacle',
         ];
         return _.sample(videos);
-    }
+    };
 
     render() {
-        const {sessionLength} = this.props;
         return (
             <div className="intermezzo">
                 <div className="video-background">

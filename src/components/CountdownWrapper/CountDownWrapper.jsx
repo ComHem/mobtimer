@@ -2,8 +2,7 @@ import React, {Component} from 'react';
 import ReactCountdownClock from 'react-countdown-clock';
 import {connect} from 'react-redux';
 import {nextUser, setBreaking} from '../../redux/user/user_actions';
-import elevator from "../../audio/tracks/elevator_jazz.mp3";
-import {randomSound, randomAlarmTrack} from "../../audio/Audio";
+import {AudioController} from "../../audio/Audio";
 import FontAwesomeIcon from '@fortawesome/react-fontawesome';
 import faPlay from '@fortawesome/fontawesome-free-solid/faPlay';
 
@@ -13,12 +12,8 @@ import './CountDownWrapper.css';
 class CountDownWrapper extends Component {
     constructor(props) {
         super(props);
-        this.alarm = new Audio(randomAlarmTrack());
-        this.alarm.loop = true;
 
-        this.elevator = new Audio(elevator);
-        this.elevator.volume = 1;
-        this.elevator.loop = true;
+        this.audioController = new AudioController();
 
         this.state = {
             show: true,
@@ -48,36 +43,28 @@ class CountDownWrapper extends Component {
 
     componentWillReceiveProps(nextProps) {
         if (nextProps.sessionLength !== this.props.sessionLength || (nextProps.current !== this.props.current && this.props.completed)) {
-            this.resetTimer();
+            //this.resetTimer();
         }
     }
 
     resetTimer = () => {
-        this.pauseAlarm();
+        this.audioController.stopSounds();
         this.setState({show: false}, () => {
             this.setState({
                 show: true,
                 completed: false
-            })
+            });
         });
     };
 
-    pauseAlarm() {
-        this.alarm.pause();
-    };
-
     playAlarm = () => {
-        this.elevator.pause();
-        this.alarm = randomAlarmTrack();
-        this.alarm.loop = true;
-
-        if (this.state.completed) {
-            this.alarm.play();
+        if (this.state.completed && !this.state.breaking) {
+            this.audioController.playRandomAlarmTrack();
         }
     };
 
     onComplete = () => {
-        randomSound().play();
+        this.audioController.playRandomSound();
 
         this.setState({
             completed: true
@@ -89,7 +76,11 @@ class CountDownWrapper extends Component {
     };
 
     pauseTimer = () => {
-        this.state.pause ? this.elevator.pause() : this.elevator.play();
+        if (this.state.pause) {
+            this.audioController.stopSounds();
+        } else {
+            this.audioController.playPauseMusic();
+        }
         this.setState({
             pause: !this.state.pause
         }, this.changeFavicon());

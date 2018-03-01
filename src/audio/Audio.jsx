@@ -10,33 +10,63 @@ import nooo from "./nooo.swf.mp3";
 import shoryuken from "./shoryuken.mp3";
 import wakawaka from "./wakawaka.swf.mp3";
 
+import elevator from "./tracks/elevator_jazz.mp3";
+
 import alarm from "./alarm.ogg";
 import party_boy from "./tracks/party_boy.mp3";
+
 import moment from "moment";
 import _ from 'lodash';
 
-let currentVolume = 1;
-
-const sounds = [burned, chewbacca, cricket, doh, hadouken, incorrect, lightsaber, metalGearSolid, nooo, shoryuken, wakawaka];
-const tracks = [alarm, alarm, party_boy, alarm, alarm, alarm];
-
-export const randomSound = () => makeAudioClip(_.sample(sounds), (currentVolume - 0.2));
-
-export const randomAlarmTrack = () => {
-    if (moment().day() >= 5) {
-        return makeAudioClip(party_boy, 1);
+export class AudioController {
+    constructor() {
+        this.currentVolume=  1;
+        this.tracks = [alarm, alarm, party_boy, alarm, alarm, alarm];
+        this.sounds = [burned, chewbacca, cricket, doh, hadouken, incorrect, lightsaber, metalGearSolid, nooo, shoryuken, wakawaka];
+        this.sound = new Audio();
     }
 
-    return makeAudioClip(_.sample(tracks), currentVolume);
-};
+    playRandomSound = () => {
+        this.playAudio(_.sample(this.sounds));
+    };
 
-export const toggleAudio = () => {
-    currentVolume = currentVolume > 0 ? 0 : 1;
-};
+    playRandomAlarmTrack = () => {
+        if (moment().day() >= 5) {
+            this.playAudio(party_boy, this.currentVolume, true);
+        } else {
+            this.playAudio(_.sample(this.tracks), this.currentVolume, true);
+        }
 
-const makeAudioClip = (sound, volume = currentVolume) => {
-    let audio = new Audio(sound);
-    audio.volume = volume;
+    };
 
-    return audio;
-};
+    toggleAudio = () => {
+        if (this.currentVolume > 0) {
+            this.stopSounds();
+            this.currentVolume = 0;
+        } else {
+            this.currentVolume = 1;
+        }
+    };
+
+    playAudio = (sound, volume = this.currentVolume, loop = false) => {
+        if (this.sound) {
+            this.sound.loop = false;
+            this.stopSounds();
+            this.sound = null;
+        }
+
+        this.sound = new Audio(sound);
+        this.sound.volume = volume;
+        this.sound.loop = loop;
+
+        this.sound.play();
+    };
+
+    stopSounds = () => {
+        this.sound.pause();
+    };
+
+    playPauseMusic = () => {
+        this.playAudio(elevator, this.currentVolume, true);
+    };
+}

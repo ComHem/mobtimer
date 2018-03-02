@@ -44,6 +44,13 @@ class Intermezzo extends Component {
             'TatteredMiserlyFrog',
             'ShrillSingleCod',
             'CleverWiltedGopher',
+            'realknobbyalbertosaurus',
+            'daringdentaldove',
+            'biodegradabletartlamb',
+            'dentaldecisivehousefly',
+            'givingpreciousabyssiniancat',
+            'bonybountifulblackfootedferret',
+            'serpentinesorrowfulgalapagospenguin',
         ];
         return _.sample(videos);
     };

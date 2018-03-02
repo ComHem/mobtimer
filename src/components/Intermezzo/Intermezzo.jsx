@@ -19,6 +19,8 @@ class Intermezzo extends Component {
             'BoringDangerousIndianjackal',
             'HeartfeltInsecureBronco',
             'BrightJadedBalloonfish',
+            'UnitedHarshArgentinehornedfrog',
+            'ImpressiveBoilingFreshwatereel',
         ];
         return _.sample(videos);
     };

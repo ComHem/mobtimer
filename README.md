@@ -62,10 +62,10 @@ npm install -g node-sass
 
 Installera dependencies
 ```bash
-yarn
+npm install
 ```
 
 Starta SCSS- och JSX-livereload på localhost:3000/
 ```
-yarn start
+npm start
 ```

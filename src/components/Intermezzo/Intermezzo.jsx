@@ -1,6 +1,8 @@
 import React, {Component} from 'react';
 import {connect} from 'react-redux';
 import _ from 'lodash';
+import {Howler} from 'howler';
+
 
 import CountDownWrapper from "../CountdownWrapper/CountDownWrapper";
 import './Intermezzo.css';
@@ -16,6 +18,10 @@ class Intermezzo extends Component {
         ];
         return _.sample(videos);
     };
+
+    componentDidMount() {
+        Howler.unload();
+    }
 
     render() {
         return (

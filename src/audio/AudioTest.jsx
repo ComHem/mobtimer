@@ -37,7 +37,7 @@ export default class AudioTest {
     };
 
     stopAudio = () => {
-        console.info("Stop sounds", this.sound);
+        console.info("STOP SOUND::");
         Howler.unload();
     };
 
@@ -46,7 +46,7 @@ export default class AudioTest {
     };
 
     playAudioFile = (file, volume = this.currentVolume, loop = false) => {
-        console.info("playAudioFile:", this.sound, file);
+        console.info("PLAY_AUDIO_FILE::", this.sound, file);
         this.stopAudio();
 
         Howler.volume(volume);

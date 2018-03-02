@@ -45,6 +45,7 @@ class CountDownWrapper extends Component {
     }
 
     resetTimer = () => {
+        this.audio.stopAudio();
         this.setState({show: false}, () => {
             this.setState({
                 show: true,
@@ -54,8 +55,11 @@ class CountDownWrapper extends Component {
     };
 
     playAlarm = () => {
-        if (this.state.completed) {
+        console.error("PLAYING ALARM AFTER xx SEC");
+        if (this.state.completed && !this.props.breaking) {
             this.audio.playAlarmSound();
+        } else {
+            this.audio.stopAudio();
         }
     };
 
@@ -65,7 +69,9 @@ class CountDownWrapper extends Component {
         this.setState({
             completed: true
         }, () => {
-            setTimeout(this.playAlarm, 10000);
+            if (this.state.completed && !this.props.breaking) {
+                setTimeout(this.playAlarm, 10000);
+            }
         });
 
         this.props.dispatch(nextUser(this.props.breakInterval));

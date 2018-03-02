@@ -3,7 +3,6 @@ import {connect} from 'react-redux';
 import './App.css';
 import UserList from '../UserList/UserList.jsx';
 import Intermezzo from '../Intermezzo/Intermezzo.jsx';
-import Notification from '../Notification/Notification.jsx';
 import CountDownWrapper from '../CountdownWrapper/CountDownWrapper.jsx';
 import SettingsView from '../SettingsView/SettingsView';
 import {nextUser} from '../../redux/user/user_actions';

@@ -1,25 +1,16 @@
 import React, {Component} from 'react';
 import ReactCountdownClock from 'react-countdown-clock';
 import {connect} from 'react-redux';
-import {nextUser, setBreaking} from '../../redux/user/user_actions';
-import elevator from "../../audio/tracks/elevator_jazz.mp3";
-import {randomSound, randomAlarmTrack} from "../../audio/Audio";
+import AudioTest from './../../audio/AudioTest';
 import FontAwesomeIcon from '@fortawesome/react-fontawesome';
 import faPlay from '@fortawesome/fontawesome-free-solid/faPlay';
 
+import {nextUser, setBreaking} from '../../redux/user/user_actions';
 import './CountDownWrapper.css';
-
 
 class CountDownWrapper extends Component {
     constructor(props) {
         super(props);
-        this.alarm = new Audio(randomAlarmTrack());
-        this.alarm.loop = true;
-
-        this.elevator = new Audio(elevator);
-        this.elevator.volume = 1;
-        this.elevator.loop = true;
-
         this.state = {
             show: true,
             completed: false,
@@ -43,6 +34,7 @@ class CountDownWrapper extends Component {
     }
 
     componentDidMount() {
+        this.audio = new AudioTest();
         this.changeFavicon();
     }
 
@@ -53,7 +45,6 @@ class CountDownWrapper extends Component {
     }
 
     resetTimer = () => {
-        this.pauseAlarm();
         this.setState({show: false}, () => {
             this.setState({
                 show: true,
@@ -62,22 +53,14 @@ class CountDownWrapper extends Component {
         });
     };
 
-    pauseAlarm() {
-        this.alarm.pause();
-    };
-
     playAlarm = () => {
-        this.elevator.pause();
-        this.alarm = randomAlarmTrack();
-        this.alarm.loop = true;
-
         if (this.state.completed) {
-            this.alarm.play();
+            this.audio.playAlarmSound();
         }
     };
 
     onComplete = () => {
-        randomSound().play();
+        this.audio.playTurnEndedSound();
 
         this.setState({
             completed: true
@@ -85,11 +68,16 @@ class CountDownWrapper extends Component {
             setTimeout(this.playAlarm, 10000);
         });
 
-        this.props.dispatch(nextUser(this.props.settings.breakInterval));
+        this.props.dispatch(nextUser(this.props.breakInterval));
     };
 
     pauseTimer = () => {
-        this.state.pause ? this.elevator.pause() : this.elevator.play();
+        if (this.state.pause) {
+            this.audio.stopAudio();
+        } else {
+            this.audio.playPauseMusic();
+        }
+
         this.setState({
             pause: !this.state.pause
         }, this.changeFavicon());
@@ -117,7 +105,7 @@ class CountDownWrapper extends Component {
             return;
         }
 
-        this.props.dispatch(nextUser(this.props.settings.breakInterval));
+        this.props.dispatch(nextUser(this.props.breakInterval));
         this.setState({
             pause: true
         });
@@ -142,7 +130,7 @@ class CountDownWrapper extends Component {
             <div className="countdown-wrapper">
                 {this.state.completed || this.state.pause &&
                 <div className="countdown-wrapper__play-btn">
-                    <FontAwesomeIcon icon={faPlay} size="3x" />
+                    <FontAwesomeIcon icon={faPlay} size="3x"/>
                 </div>
                 }
                 {this.state.show &&
@@ -170,11 +158,10 @@ class CountDownWrapper extends Component {
 }
 
 const mapStateToProps = (state) => ({
+    current: state.user.current,
     breaking: state.user.breaking,
-    settings: state.settings,
+    breakInterval: state.settings.breakInterval,
     sessionLength: state.settings.sessionLength,
-    running: state.time.running,
-    current: state.user.current
 });
 
 export default connect(mapStateToProps)(CountDownWrapper);

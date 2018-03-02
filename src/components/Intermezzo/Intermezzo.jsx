@@ -51,7 +51,7 @@ class Intermezzo extends Component {
             'givingpreciousabyssiniancat',
             'bonybountifulblackfootedferret',
             'serpentinesorrowfulgalapagospenguin',
-            'understatedpoorcassowary',
+            'FineEarlyLadybug',
         ];
         return _.sample(videos);
     };

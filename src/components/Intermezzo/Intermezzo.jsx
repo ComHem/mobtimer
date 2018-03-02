@@ -13,6 +13,12 @@ class Intermezzo extends Component {
             'ShadowyCraftyEmperorshrimp',
             'ExemplaryFrailIaerismetalmark',
             'LavishUncommonAcornbarnacle',
+            'HelplessQuarrelsomeAardwolf',
+            'ClutteredInsistentHairstreakbutterfly',
+            'YoungFatherlyCuscus',
+            'BoringDangerousIndianjackal',
+            'HeartfeltInsecureBronco',
+            'BrightJadedBalloonfish',
         ];
         return _.sample(videos);
     };

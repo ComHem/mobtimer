@@ -78,9 +78,8 @@ class CountDownWrapper extends Component {
     };
 
     pauseTimer = () => {
-        if (this.state.pause) {
-            this.audio.stopAudio();
-        } else {
+        this.audio.stopAudio();
+        if (!this.state.pause) {
             this.audio.playPauseMusic();
         }
 

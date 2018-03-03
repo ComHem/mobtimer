@@ -55,7 +55,7 @@ class UserList extends React.Component {
 }
 
 const mapStateToProps = (state) => ({
-    users: state.user.list,
+    users: state.user.users,
     currentUser: state.user.current,
 });
 

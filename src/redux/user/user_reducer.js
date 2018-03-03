@@ -38,19 +38,20 @@ const reducer = (state = initial_state, action) => {
                 .map(user => user.name);
             const nextIndex = ( activeUsers.indexOf(state.current) + 1 ) % activeUsers.length;
             const nextUser = activeUsers[nextIndex];
-            const isToday = state.activeDate && state.activeDate === new Date().getDate();
+            const hasBeenUsedToday = state.activeDate && state.activeDate === new Date().getDate();
 
-            let rotation = nextIndex === 0
-                ? (state.rotation + 1)
-                : state.rotation;
+            let rotation = nextIndex === 0 ? (state.rotation + 1) : state.rotation;
 
-            if (!isToday) {
-                rotation = 0
+            if (!hasBeenUsedToday) {
+                rotation = 0;
             }
 
             let breaking = false;
             if (action.breakInterval && state.rotation !== rotation) {
-                breaking = (state.rotation % +action.breakInterval) === 0;
+                console.log(state);
+                if (state.rotation > 0) {
+                    breaking = (state.rotation % action.breakInterval) === 0;
+                }
             }
 
             return {...state, ...{current: nextUser, rotation, breaking, activeDate: new Date().getDate()}}

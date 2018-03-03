@@ -23,7 +23,6 @@ class Intermezzo extends Component {
             'BrightJadedBalloonfish',
             'UnitedHarshArgentinehornedfrog',
             'ImpressiveBoilingFreshwatereel',
-            'IdealRealCollardlizard',
             'ImpeccableOrnateGallowaycow',
             'ScholarlyAnguishedFreshwatereel',
             'FloweryCaringJackrabbit',

@@ -28,11 +28,11 @@ export default class AudioTest {
     }
 
     playTurnEndedSound = () => this.playAudioFile(_.sample(this.sounds));
-    playAlarmSound = () => {
+    playAlarmSound = (breaking = false) => {
         if (moment().day() >= 5) {
-            this.playAudioFile(party_boy, 1);
+            this.playAudioFile(party_boy);
         } else {
-            this.playAudioFile(_.sample(this.tracks), this.currentVolume);
+            this.playAudioFile(_.sample(this.tracks), this.currentVolume, true);
         }
     };
 
@@ -55,8 +55,6 @@ export default class AudioTest {
             src: [file],
             loop: loop,
             autoplay: false,
-        });
-
-        this.sound.play();
+        }).play();
     };
 }

@@ -26,7 +26,7 @@ const reducer = (state = initial_state, action) => {
             const users = {...state.users};
             delete users[action.name];
             return {...state, ...{
-                users: users
+                users
             }};
         }
         case types.TOGGLE_USER_SLEEPING: {
@@ -36,11 +36,8 @@ const reducer = (state = initial_state, action) => {
                 users[name].sleeping = !users[name].sleeping;
             }
             return {...state, ...{
-                users: users
+                users
             }}
-        }
-        case types.SET_BREAKING: {
-            return {...state, ...{breaking: action.breaking}}
         }
         case types.NEXT_USER: {
             const activeUsers = Object.values(state.users)
@@ -51,22 +48,26 @@ const reducer = (state = initial_state, action) => {
             const firstTimeUsingToday = state.activeDate && state.activeDate !== new Date().getDate();
 
 
-            // --> ROTATION.
+            // -- ROTATION -->
             let rotation = nextUserIndex === 0 ? (state.rotation + 1) : state.rotation;
             if (firstTimeUsingToday) {
                 rotation = 0;
             }
-            // <-- ROTATION.
+            // <-- ROTATION --
 
-            // --> MOVE TO SET_BREAKING.
+            // -- BREAKING -->
             let breaking = false;
-            if (action.breakInterval && state.rotation !== rotation) {
-                console.log(state);
+            if (state.breaking) {
+                breaking = false;
+            }
+            if (action.breakInterval &&
+                state.rotation !== rotation &&
+                breaking === false) {
                 if (state.rotation > 0 || firstTimeUsingToday) {
                     breaking = (state.rotation % action.breakInterval) === 0;
                 }
             }
-            // <-- MOVE TO SET_BREAKING.
+            // <-- BREAKING --
 
             return {...state, ...{
                 current: nextUser,

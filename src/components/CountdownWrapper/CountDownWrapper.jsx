@@ -5,7 +5,7 @@ import AudioTest from './../../audio/AudioTest';
 import FontAwesomeIcon from '@fortawesome/react-fontawesome';
 import faPlay from '@fortawesome/fontawesome-free-solid/faPlay';
 
-import {nextUser, setBreaking} from '../../redux/user/user_actions';
+import {nextUser} from '../../redux/user/user_actions';
 import './CountDownWrapper.css';
 
 class CountDownWrapper extends Component {
@@ -49,15 +49,15 @@ class CountDownWrapper extends Component {
         this.setState({show: false}, () => {
             this.setState({
                 show: true,
-                completed: false
+                completed: false,
             })
         });
     };
 
     playAlarm = () => {
-        console.error("PLAYING ALARM AFTER xx SEC");
-        if (this.state.completed && !this.props.breaking) {
+        if (this.state.completed && this.props.breaking === false) {
             this.audio.playAlarmSound();
+            console.error("PLAYING ALARM AFTER TIMEOUT");
         } else {
             this.audio.stopAudio();
         }
@@ -69,8 +69,9 @@ class CountDownWrapper extends Component {
         this.setState({
             completed: true
         }, () => {
-            if (this.state.completed && !this.props.breaking) {
-                setTimeout(this.playAlarm, 10000);
+            if (this.props.breaking === false) {
+                window.clearTimeout(window.timeoutInstance);
+                window.timeoutInstance = setTimeout(this.playAlarm, 10000, !!this.props.breaking);
             }
         });
 
@@ -105,11 +106,6 @@ class CountDownWrapper extends Component {
     };
 
     nextUser = () => {
-        if (this.props.breaking) {
-            this.props.dispatch(setBreaking(false));
-            return;
-        }
-
         this.props.dispatch(nextUser(this.props.breakInterval));
         this.setState({
             pause: true

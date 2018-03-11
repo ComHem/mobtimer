@@ -6,6 +6,7 @@ import {Howler} from 'howler';
 
 import CountDownWrapper from "../CountdownWrapper/CountDownWrapper";
 import './Intermezzo.css';
+import AudioTest from "../../audio/AudioTest";
 
 class Intermezzo extends Component {
     randomGfycatVideo = () => {
@@ -40,7 +41,14 @@ class Intermezzo extends Component {
     };
 
     componentDidMount() {
+        this.audio = new AudioTest();
+        window.clearTimeout(window.timeoutInstance);
         Howler.unload();
+        this.audio.playTurnEndedSound();
+    }
+
+    componentWillUnmount() {
+        this.audio = null;
     }
 
     render() {

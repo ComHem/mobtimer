@@ -2,6 +2,7 @@ import React, {Component} from 'react';
 import ReactCountdownClock from 'react-countdown-clock';
 import {connect} from 'react-redux';
 import AudioTest from './../../audio/AudioTest';
+import build from '../../build.txt';
 import FontAwesomeIcon from '@fortawesome/react-fontawesome';
 import faPlay from '@fortawesome/fontawesome-free-solid/faPlay';
 
@@ -36,6 +37,11 @@ class CountDownWrapper extends Component {
     componentDidMount() {
         this.audio = new AudioTest();
         this.changeFavicon();
+        fetch(build).then((content) => {
+            return content.text().then((text) => {
+                console.info("BUILD.TXT:", text);
+            });
+        });
     }
 
     componentWillReceiveProps(nextProps) {

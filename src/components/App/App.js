@@ -12,7 +12,10 @@ import logo from '../../images/com_hem_logo.png';
 class App extends Component {
     constructor() {
         super();
-        this.state = {showSettings: true};
+        this.state = {
+            build: "",
+            showSettings: true
+        };
         this.onTime = this.onTime.bind(this);
         this.onNextUser = this.onNextUser.bind(this);
         this.onToggleSettings = this.onToggleSettings.bind(this);
@@ -22,6 +25,17 @@ class App extends Component {
         if (this.props.current !== nextProps.current) {
             this.setState({showSettings: false});
         }
+    }
+
+    componentDidMount() {
+        fetch("/static/build.txt").then((content) => {
+            return content.text().then((text) => {
+                if (text.length > 20) {
+                    return;
+                }
+                this.setState({build: text});
+            });
+        });
     }
 
     onTime() {
@@ -75,7 +89,7 @@ class App extends Component {
                 />
 
                 <footer>
-                    <img src={logo} alt=""/>
+                    <img title={`Build: ${this.state.build}`} src={logo} alt=""/>
                 </footer>
             </div>
         );

@@ -36,11 +36,6 @@ class CountDownWrapper extends Component {
     componentDidMount() {
         this.audio = new AudioTest();
         this.changeFavicon();
-        fetch("/static/build.txt").then((content) => {
-            return content.text().then((text) => {
-                console.info("BUILD.TXT:", text);
-            });
-        });
     }
 
     componentWillReceiveProps(nextProps) {

@@ -5,7 +5,7 @@
 VISIT PUBLIC MOBTIMER ---> http://mobtimer.westeurope.cloudapp.azure.com/
 #####
 ##### A project initiated by team WEB & CRM
-
+[![Build Status](https://travis-ci.org/ComHem/mobtimer.svg?branch=master)](https://travis-ci.org/ComHem/mobtimer)
 
 <br><br>
 ![Com Hem](https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcRSKoI_VsCygNKs_M50WQaUp4ibBAfgj3hgSxjBWBR-y2od8FX0sFc74P81)

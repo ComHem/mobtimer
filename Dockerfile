@@ -4,5 +4,5 @@ ENV PORT 8080
 ADD . /srv/staticapp
 WORKDIR /srv/staticapp
 RUN npm install && npm install -g serve && npm run-script build
-RUN printf `date '+%Y-%m-%d %H:%M:%S'` > ./src/build.txt
+RUN sudo echo `date '+%Y-%m-%d %H:%M:%S'` > ./src/build.txt
 CMD ["serve", "-s", "build"]

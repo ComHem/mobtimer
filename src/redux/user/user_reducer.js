@@ -50,10 +50,13 @@ const reducer = (state = initial_state, action) => {
             const nextUser = activeUsers[nextUserIndex];
             const firstTimeUsingToday = state.activeDate && state.activeDate !== new Date().getDate();
 
+
+            // --> ROTATION.
             let rotation = nextUserIndex === 0 ? (state.rotation + 1) : state.rotation;
             if (firstTimeUsingToday) {
                 rotation = 0;
             }
+            // <-- ROTATION.
 
             // --> MOVE TO SET_BREAKING.
             let breaking = false;
@@ -65,7 +68,12 @@ const reducer = (state = initial_state, action) => {
             }
             // <-- MOVE TO SET_BREAKING.
 
-            return {...state, ...{current: nextUser, rotation, breaking, activeDate: new Date().getDate()}}
+            return {...state, ...{
+                current: nextUser,
+                rotation,
+                breaking,
+                activeDate: new Date().getDate()
+            }}
         }
         default:
             return state;

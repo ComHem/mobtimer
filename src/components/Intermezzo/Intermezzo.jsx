@@ -23,33 +23,17 @@ class Intermezzo extends Component {
             'BrightJadedBalloonfish',
             'UnitedHarshArgentinehornedfrog',
             'ImpressiveBoilingFreshwatereel',
-            'ImpeccableOrnateGallowaycow',
-            'ScholarlyAnguishedFreshwatereel',
-            'FloweryCaringJackrabbit',
-            'SlowCrispBarnowl',
-            'IllustriousSpecificGiantschnauzer',
-            'SoulfulThirstyKillerwhale',
             'GoldenGleamingArthropods',
-            'PopularVacantAcornbarnacle',
-            'AngryFlashyGull',
-            'MediumPersonalAegeancat',
             'FrailEasyLcont',
             'DecisiveImprobableHerculesbeetle',
-            'OrangeShyIbisbill',
-            'BouncyVeneratedFox',
-            'UniqueVagueBelugawhale',
-            'MixedAlarmedGadwall',
             'KindAdmiredDassie',
             'TatteredMiserlyFrog',
             'ShrillSingleCod',
-            'CleverWiltedGopher',
             'realknobbyalbertosaurus',
             'daringdentaldove',
             'biodegradabletartlamb',
-            'dentaldecisivehousefly',
             'givingpreciousabyssiniancat',
             'bonybountifulblackfootedferret',
-            'serpentinesorrowfulgalapagospenguin',
             'FineEarlyLadybug',
         ];
         return _.sample(videos);
@@ -81,6 +65,6 @@ class Intermezzo extends Component {
 
 const mapStateToProps = (state) => ({
     sessionLength: state.settings.sessionLength,
-    breaking: state.settings.breaking,
+    breaking: state.user.breaking,
 });
 export default connect(mapStateToProps)(Intermezzo);

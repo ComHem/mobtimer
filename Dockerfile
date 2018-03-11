@@ -2,7 +2,8 @@ FROM node:alpine
 EXPOSE 8080
 ENV PORT 8080
 ADD . /srv/staticapp
+COPY ./src/build.txt /srv/staticapp/meta
 WORKDIR /srv/staticapp
 RUN npm install && npm install -g serve && npm run-script build
-RUN sudo echo `date '+%Y-%m-%d %H:%M:%S'` > ./src/build.txt
+RUN echo `date '+%Y-%m-%d %H:%M:%S'` > ./meta/build.txt
 CMD ["serve", "-s", "build"]

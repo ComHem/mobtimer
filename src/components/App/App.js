@@ -86,7 +86,7 @@ class App extends Component {
 
                 <div className="rotation">
                     <h2>Current rotation: {rotation}</h2>
-                    <h3>{`Break after every ${breakInterval} rotation`}</h3>
+                    <h3>{`Break after every ${breakInterval} rotations`}</h3>
                 </div>
 
                 <SettingsView

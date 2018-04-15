@@ -2,13 +2,23 @@ import React, {Component} from 'react';
 import {connect} from 'react-redux';
 import _ from 'lodash';
 import {Howler} from 'howler';
-
-
-import CountDownWrapper from "../CountdownWrapper/CountDownWrapper";
 import './Intermezzo.css';
-import AudioTest from "../../audio/AudioTest";
+import breaktime from './../../images/breaktime.png';
+import AudioTest from '../../audio/AudioTest';
+
+import {setBreaking} from '../../redux/user/user_actions';
 
 class Intermezzo extends Component {
+    constructor(props) {
+        super(props);
+        this.state = {
+            background: "",
+            hour: 0,
+            minute: 0,
+            second: 0,
+        }
+    }
+
     randomGfycatVideo = () => {
         const videos = [
             'CheapCookedDungbeetle',
@@ -37,7 +47,9 @@ class Intermezzo extends Component {
             'bonybountifulblackfootedferret',
             'FineEarlyLadybug',
         ];
-        return _.sample(videos);
+        this.setState({
+            background: `https://gfycat.com/ifr/${_.sample(videos)}`
+        });
     };
 
     componentDidMount() {
@@ -45,18 +57,52 @@ class Intermezzo extends Component {
         window.clearTimeout(window.timeoutInstance);
         Howler.unload();
         this.audio.playTurnEndedSound();
+        this.randomGfycatVideo();
+        this.startTimer();
+    }
+
+
+    onRemove() {
+        this.audio = null;
+        window.clearTimeout(window.timeoutInstance);
+        console.info("componentWillUnmount", this);
     }
 
     componentWillUnmount() {
-        this.audio = null;
+        this.onRemove();
     }
+
+    formatTime() {
+        const addZero = (val) => val > 9 ? val : `0${val}`;
+        return `${addZero(this.state.hour)}:${addZero(this.state.minute)}:${addZero(this.state.second)}`;
+    }
+
+    startTimer() {
+        let totalSeconds = 0;
+        window.timeoutInstance = setInterval(() => {
+            ++totalSeconds;
+            let hour = Math.floor(totalSeconds / 3600);
+            let minute = Math.floor((totalSeconds - hour * 3600) / 60);
+            let second = totalSeconds - (hour * 3600 + minute * 60);
+
+            this.setState({
+                hour,
+                minute,
+                second
+            });
+        }, 1000);
+    }
+
+    exitIntermezzo = () => {
+        this.props.dispatch(setBreaking(false));
+    };
 
     render() {
         return (
             <div className="intermezzo">
                 <div className="video-background">
                     <div style={{position: 'absolute', left: 0, top: 0, right: 0, bottom: 0}}>
-                        <iframe src={`https://gfycat.com/ifr/${this.randomGfycatVideo()}`}
+                        <iframe src={this.state.background}
                                 frameBorder={0}
                                 scrolling='no'
                                 width='100%'
@@ -64,7 +110,17 @@ class Intermezzo extends Component {
                     </div>
                 </div>
                 <div className="intermezzo__content">
-                    <CountDownWrapper/>
+                    <div className="intermezzo__content__header">
+                        <img src={breaktime} alt="break time"/>
+                    </div>
+
+                    <div className="intermezzo__content__buttons">
+                        <div title="Fortsätt" className="intermezzo__content__buttons--play pointer" onClick={this.exitIntermezzo}/>
+                    </div>
+
+                    <div className="intermezzo__content__elapsed-time">
+                        {this.formatTime()}
+                    </div>
                 </div>
             </div>
         );

@@ -52,7 +52,11 @@ class App extends Component {
 
     renderView() {
         if (this.props.breaking) {
-            return (<Intermezzo/>);
+            return (
+                <div>
+                    <Intermezzo/>
+                </div>
+            );
         } else {
             return (
                 <div>

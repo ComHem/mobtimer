@@ -13,6 +13,8 @@ import wakawaka from "./wakawaka.swf.mp3";
 import elevator from "./tracks/elevator_jazz.mp3";
 import alarm from "./alarm.ogg";
 import party_boy from "./tracks/party_boy.mp3";
+import yay from "./kids.mp3";
+
 import moment from "moment";
 import _ from 'lodash';
 import {Howl, Howler} from 'howler';
@@ -28,6 +30,7 @@ export default class AudioTest {
     }
 
     playTurnEndedSound = () => this.playAudioFile(_.sample(this.sounds));
+    playBreaktimeSound = () => this.playAudioFile(yay);
     playAlarmSound = (breaking = false) => {
         if (moment().day() >= 5) {
             this.playAudioFile(party_boy);

@@ -19,7 +19,7 @@ class Intermezzo extends Component {
         }
     }
 
-    randomGfycatVideo = () => {
+    setRandomGfycatVideoAsBackground = () => {
         const videos = [
             'CheapCookedDungbeetle',
             'HandmadeInsignificantHind',
@@ -56,8 +56,8 @@ class Intermezzo extends Component {
         this.audio = new AudioTest();
         window.clearTimeout(window.timeoutInstance);
         Howler.unload();
-        this.audio.playTurnEndedSound();
-        this.randomGfycatVideo();
+        this.audio.playBreaktimeSound();
+        this.setRandomGfycatVideoAsBackground();
         this.startTimer();
     }
 

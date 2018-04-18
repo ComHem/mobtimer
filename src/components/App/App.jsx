@@ -70,7 +70,7 @@ class App extends Component {
     }
 
     render() {
-        const {rotation, breakInterval} = this.props;
+        const {rotation, breakInterval, sessionLength} = this.props;
         const {showSettings} = this.state;
 
         return (
@@ -88,7 +88,9 @@ class App extends Component {
 
                 <div className="rotation">
                     <h2>Current rotation: {rotation}</h2>
-                    <h3>{`Break after every ${breakInterval} rotations`}</h3>
+                    <h3>{`Break after every ${breakInterval} rotations`}<br/>
+                        <sub>{`(Every ${breakInterval * sessionLength} minutes)`}</sub>
+                    </h3>
                 </div>
 
                 <SettingsView
@@ -105,6 +107,7 @@ class App extends Component {
 
 const mapStateToProps = (state) => ({
     breakInterval: state.settings.breakInterval,
+    sessionLength: state.settings.sessionLength,
     rotation: state.user.rotation,
     breaking: state.user.breaking,
     current: state.user.current,

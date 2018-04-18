@@ -6,6 +6,11 @@
     position: relative;
 }
 
+.App sub {
+    font-size: 0.7em;
+    font-style: italic;
+}
+
 .App-mainView {
     position: absolute;
     width: 100%;

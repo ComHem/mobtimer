@@ -55,7 +55,7 @@ class CountDownWrapper extends Component {
     };
 
     playAlarm = () => {
-        if (this.state.completed && this.props.breaking === false) {
+        if (this.state.completed === true && this.props.breaking === false) {
             this.audio.playAlarmSound();
             console.error("PLAYING ALARM AFTER TIMEOUT");
         } else {
@@ -123,17 +123,23 @@ class CountDownWrapper extends Component {
         }
     }
 
+    renderPlayButton() {
+        if (this.state.completed || this.state.pause) {
+            return (
+                <div className="countdown-wrapper__play-btn">
+                    <FontAwesomeIcon icon={faPlay} size="3x"/>
+                </div>
+            );
+        }
+    }
+
     render() {
         const sessionLength = +this.props.sessionLength * 60;
         const size = 360;
 
         return (
             <div className="countdown-wrapper">
-                {this.state.completed || this.state.pause &&
-                <div className="countdown-wrapper__play-btn">
-                    <FontAwesomeIcon icon={faPlay} size="3x"/>
-                </div>
-                }
+                {this.renderPlayButton()}
                 {this.state.show &&
                 <div className="countdown-wrapper__clock-wrapper" style={{width: `${size}px`, height: `${size}px`}}>
                     <div className="countdown-wrapper__clock"

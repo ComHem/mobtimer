@@ -4,7 +4,7 @@ import {connect} from 'react-redux';
 import FontAwesomeIcon from '@fortawesome/react-fontawesome';
 import {faPlay, faVolumeOff, faVolumeUp} from '@fortawesome/fontawesome-free-solid';
 import {toggleMute} from '../../redux/sound/sound_actions';
-import './QuickSettings.css';
+import './QuickSettings.scss';
 
 class QuickSettings extends React.Component {
     toggleMute = () => {

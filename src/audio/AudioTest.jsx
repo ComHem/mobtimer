@@ -21,7 +21,7 @@ import {Howl, Howler} from 'howler';
 
 export default class AudioTest {
     constructor() {
-        this.currentVolume = 1;
+        this.masterVolume = 1;
         this.sounds = [burned, chewbacca, cricket, doh, hadouken, incorrect, lightsaber, metalGearSolid, nooo, shoryuken, wakawaka];
         this.tracks = [alarm, alarm, party_boy, alarm, alarm, alarm];
         this.sound = new Howl({
@@ -30,28 +30,26 @@ export default class AudioTest {
     }
 
     playTurnEndedSound = () => this.playAudioFile(_.sample(this.sounds));
-    playBreaktimeSound = () => this.playAudioFile(yay);
-    playAlarmSound = (breaking = false) => {
+    playBreaktimeSound = () => this.playAudioFile(yay, 0.5);
+    playAlarmSound = () => {
         if (moment().day() >= 5) {
             this.playAudioFile(party_boy);
         } else {
-            this.playAudioFile(_.sample(this.tracks), this.currentVolume, true);
+            this.playAudioFile(_.sample(this.tracks), this.masterVolume, true);
         }
     };
 
     stopAudio = () => {
-        console.info("STOP SOUND::");
         Howler.unload();
     };
 
     playPauseMusic = () => {
-        this.playAudioFile(elevator, this.currentVolume, true);
+        this.playAudioFile(elevator, this.masterVolume, true);
     };
 
-    playAudioFile = (file, volume = this.currentVolume, loop = false) => {
+    playAudioFile = (file, volume = this.masterVolume, loop = false) => {
         console.info("PLAY_AUDIO_FILE::", this.sound, file);
         this.stopAudio();
-        console.info("HOWLER MUTED?", Howler._muted);
 
         Howler.volume(volume);
 

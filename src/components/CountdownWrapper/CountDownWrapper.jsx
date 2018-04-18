@@ -35,7 +35,6 @@ class CountDownWrapper extends Component {
 
     componentDidMount() {
         this.audio = new AudioTest();
-        this.changeFavicon();
     }
 
     componentWillReceiveProps(nextProps) {
@@ -73,6 +72,7 @@ class CountDownWrapper extends Component {
                 window.clearTimeout(window.timeoutInstance);
                 window.timeoutInstance = setTimeout(this.playAlarm, 10000, !!this.props.breaking);
             }
+            this.changeFavicon();
         });
 
         this.props.dispatch(nextUser(this.props.breakInterval));
@@ -90,19 +90,19 @@ class CountDownWrapper extends Component {
     };
 
     changeFavicon = () => {
-        const favicon = "/favicon.ico";
-        const faviconPaused = "/favicon--paused.png";
+        const favicon = `/favicon.ico?r=${Math.random()}`;
+        const faviconPaused = `/favicon--paused.png?r=${Math.random()}`;
 
-        let link = document.createElement('link'),
-            oldLink = document.getElementById('dynamic-favicon');
-        link.id = 'dynamic-favicon';
-        link.rel = 'icon';
-        link.href = this.state.pause ? favicon : faviconPaused;
+        let icon = document.createElement('link'),
+            oldIcon = document.getElementById('dynamic-favicon');
+        icon.id = 'dynamic-favicon';
+        icon.rel = 'icon';
+        icon.href = this.state.pause ? favicon : faviconPaused;
 
-        if (oldLink) {
-            document.head.removeChild(oldLink);
+        if (oldIcon) {
+            document.head.removeChild(oldIcon);
         }
-        document.head.appendChild(link);
+        document.head.appendChild(icon);
     };
 
     nextUser = () => {

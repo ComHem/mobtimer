@@ -4,7 +4,7 @@ import {Howler} from 'howler';
 
 const initial_state = {
     volume: 1,
-    muted: false,
+    muted: true,
 };
 
 const reducer = (state = initial_state, action) => {

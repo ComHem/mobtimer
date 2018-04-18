@@ -3,7 +3,7 @@ import ReactCountdownClock from 'react-countdown-clock';
 import {connect} from 'react-redux';
 import AudioTest from './../../audio/AudioTest';
 import FontAwesomeIcon from '@fortawesome/react-fontawesome';
-import faPlay from '@fortawesome/fontawesome-free-solid/faPlay';
+import {faPlay} from '@fortawesome/fontawesome-free-solid';
 
 import {nextUser} from '../../redux/user/user_actions';
 import './CountDownWrapper.css';

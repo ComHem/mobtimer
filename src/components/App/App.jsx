@@ -4,6 +4,7 @@ import './App.css';
 import UserList from '../UserList/UserList.jsx';
 import Intermezzo from '../Intermezzo/Intermezzo.jsx';
 import CountDownWrapper from '../CountdownWrapper/CountDownWrapper.jsx';
+import QuickSettings from '../QuickSettings/QuickSettings';
 import SettingsView from '../SettingsView/SettingsView';
 import {nextUser} from '../../redux/user/user_actions';
 import Icon from '../Icon/Icon';
@@ -60,6 +61,7 @@ class App extends Component {
         } else {
             return (
                 <div>
+                    <QuickSettings/>
                     <UserList/>
                     <CountDownWrapper/>
                 </div>

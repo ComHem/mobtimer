@@ -48,6 +48,7 @@ export default class AudioTest {
     playAudioFile = (file, volume = this.currentVolume, loop = false) => {
         console.info("PLAY_AUDIO_FILE::", this.sound, file);
         this.stopAudio();
+        console.info("HOWLER MUTED?", Howler._muted);
 
         Howler.volume(volume);
 

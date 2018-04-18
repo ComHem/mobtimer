@@ -51,6 +51,10 @@ class App extends Component {
         this.setState({showSettings: !this.state.showSettings});
     }
 
+    closeSettingsPane = () => {
+        this.setState({showSettings: false});
+    };
+
     renderView() {
         if (this.props.breaking) {
             return (
@@ -75,7 +79,7 @@ class App extends Component {
 
         return (
             <div className={`App ${showSettings ? 'App--pane-open' : ''}`}>
-                <div className="App-mainView">
+                <div className="App-mainView" onClick={this.closeSettingsPane}>
                     <div className="background"/>
                     {this.renderView()}
                 </div>

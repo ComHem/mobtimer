@@ -9,6 +9,7 @@
     "babel-core": "^6.26.0",
     "babel-jest": "^22.4.3",
     "howler": "^2.0.9",
+    "jest-cli": "^22.4.3",
     "lodash": "^4.17.5",
     "moment": "^2.22.1",
     "node-sass-chokidar": "^0.0.3",

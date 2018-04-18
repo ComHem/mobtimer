@@ -55,19 +55,18 @@
   background: rgba(78, 205, 196, 0.3);
   width: 100%;
   height: 100%; }
-
-.blur.--paused {
-  background: rgba(196, 77, 88, 0.4);
-  animation-name: slidein-big;
-  animation-duration: 1s;
-  animation-iteration-count: infinite;
-  animation-direction: alternate; }
-
-.blur.--break {
-  animation-name: slidein-small;
-  animation-duration: 5s;
-  animation-iteration-count: infinite;
-  animation-direction: alternate; }
+  .blur.--paused {
+    background: rgba(196, 77, 88, 0.4);
+    animation-name: slidein-big;
+    animation-duration: 1s;
+    animation-iteration-count: infinite;
+    animation-direction: alternate; }
+  .blur.--breaking {
+    background: rgba(249, 239, 44, 0.3);
+    animation-name: slidein-small;
+    animation-duration: 5s;
+    animation-iteration-count: infinite;
+    animation-direction: alternate; }
 
 @keyframes slidein-small {
   from {

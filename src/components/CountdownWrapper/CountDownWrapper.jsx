@@ -19,7 +19,7 @@ class CountDownWrapper extends Component {
 
         this.colors = {
             breaking: {
-                color: '#F8D664',
+                color: '#f9ef40',
                 className: '--breaking'
             },
             playing: {
@@ -114,7 +114,7 @@ class CountDownWrapper extends Component {
     };
 
     getColorState() {
-        if (this.props.breaking) {
+        if (this.state.completed) {
             return this.colors.breaking;
         } else if (this.state.pause) {
             return this.colors.paused;

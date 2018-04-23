@@ -4,6 +4,7 @@ import {connect} from 'react-redux';
 import FontAwesomeIcon from '@fortawesome/react-fontawesome';
 import {faPlay, faVolumeOff, faVolumeUp} from '@fortawesome/fontawesome-free-solid';
 import {toggleMute} from '../../redux/sound/sound_actions';
+import {Howler} from 'howler';
 import './QuickSettings.css';
 
 class QuickSettings extends React.Component {
@@ -12,7 +13,7 @@ class QuickSettings extends React.Component {
     };
 
     componentDidMount() {
-        this.toggleMute();
+        Howler.mute(this.props.muted);
     }
 
     render() {

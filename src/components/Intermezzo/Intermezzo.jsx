@@ -73,8 +73,8 @@ class Intermezzo extends Component {
     }
 
     formatTime() {
-        const addZero = (val, limit) => val > limit ? val : `0${val}`;
-        return `${addZero(this.state.hour, 24)}:${addZero(this.state.minute, 9)}:${addZero(this.state.second, 9)}`;
+        const addZero = val => val > 9 ? val : `0${val}`;
+        return `${addZero(this.state.hour)}:${addZero(this.state.minute)}:${addZero(this.state.second)}`;
     }
 
     startTimer() {

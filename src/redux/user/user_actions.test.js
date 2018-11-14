@@ -1,5 +1,4 @@
 import configureStore from 'redux-mock-store'
-import {addUser, removeUser, toggleUserSleeping, nextUser, setBreaking} from './user_actions';
 
 const mockStore = configureStore();
 
@@ -12,6 +11,6 @@ describe('user_actions', () => {
     });
 
     it('unusable test', () => {
-        expect(false).toEqual(false)
+        expect(true).toBe(true);
     });
 });

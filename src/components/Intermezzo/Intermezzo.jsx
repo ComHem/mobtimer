@@ -73,7 +73,7 @@ class Intermezzo extends Component {
     }
 
     formatTime() {
-        const addZero = val => val > 9 ? val : `0${val}`;
+        const addZero = val => Number(val).toString().length === 1 ? `0${val}` : val;
         return `${addZero(this.state.hour)}:${addZero(this.state.minute)}:${addZero(this.state.second)}`;
     }
 

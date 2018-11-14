@@ -11,21 +11,12 @@ import Icon from '../Icon/Icon';
 import logo from '../../images/com_hem_logo.png';
 
 class App extends Component {
-    constructor() {
-        super();
+    constructor(props) {
+        super(props);
         this.state = {
             build: "",
             showSettings: true
         };
-        this.onTime = this.onTime.bind(this);
-        this.onNextUser = this.onNextUser.bind(this);
-        this.onToggleSettings = this.onToggleSettings.bind(this);
-    }
-
-    componentWillReceiveProps(nextProps) {
-        if (this.props.current !== nextProps.current) {
-            this.setState({showSettings: false});
-        }
     }
 
     componentDidMount() {
@@ -39,17 +30,17 @@ class App extends Component {
         });
     }
 
-    onTime() {
+    onTime = () => {
         this.props.dispatch(nextUser(this.props.settings.breakInterval));
-    }
+    };
 
-    onNextUser() {
+    onNextUser = () => {
         this.props.dispatch(nextUser(this.props.settings.breakInterval));
-    }
+    };
 
-    onToggleSettings() {
+    onToggleSettings = () => {
         this.setState({showSettings: !this.state.showSettings});
-    }
+    };
 
     closeSettingsPane = () => {
         this.setState({showSettings: false});
@@ -102,7 +93,11 @@ class App extends Component {
                 />
 
                 <footer>
-                    <img title={`Build: ${this.state.build}`} src={logo} alt=""/>
+                    <img
+                        title={`Build: ${this.state.build}`}
+                        src={logo}
+                        alt=""
+                    />
                 </footer>
             </div>
         );

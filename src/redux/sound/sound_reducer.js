@@ -3,8 +3,7 @@ import {Howler} from 'howler';
 
 const title = "Mob timer";
 const initial_state = {
-    volume: 1,
-    muted: true,
+    muted: false,
 };
 
 const reducer = (state = initial_state, action) => {

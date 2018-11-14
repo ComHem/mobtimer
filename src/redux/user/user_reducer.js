@@ -1,25 +1,48 @@
 import * as types from './user_types';
+import _ from 'lodash';
 
 const initial_state = {
     rotation: 0,
-    users: {},
+    current: "",
+    breaking: false,
+    users: [],
 };
+
+const setIsBreaktime = (state, options, firstTimeUsingToday) => {
+    let breaking = false;
+    if (state.breaking) {
+        breaking = false;
+    }
+    if (options.breakInterval &&
+        state.rotation !== options.rotation &&
+        breaking === false) {
+        if (state.rotation > 0 || firstTimeUsingToday) {
+            breaking = (state.rotation % options.breakInterval) === 0;
+        }
+    }
+
+    return breaking;
+};
+
+const getUserFromState = (state, user) => {
+    return state.users.filter(stateUser => stateUser.name === user.name)[0]
+};
+const isUserInState = (state, user) => (!!state.users.filter(stateUser => stateUser.name === user.name).length);
+const isUserCurrentlyActive = (state, user) => (state.current === getUserFromState(state, user).name);
 
 const reducer = (state = initial_state, action) => {
     switch (action.type) {
         case types.ADD_USER: {
             const name = action.user && action.user.name;
             const userList = state.users;
-            if (name && name !== types.CONST__NEW_USER_NAME && userList && !userList[name]) {
+
+            if (name && !isUserInState(state, action.user)) {
                 const current = state.current || name;
                 return {
                     ...state,
                     ...{
                         current,
-                        users: {
-                            ...userList,
-                            ...{[name]: action.user}
-                        }
+                        users: [...userList, action.user]
                     }
                 }
             }
@@ -27,35 +50,34 @@ const reducer = (state = initial_state, action) => {
         }
 
         case types.REMOVE_USER: {
-            const users = {...state.users};
-            delete users[action.name];
+            const users = state.users;
             return {
                 ...state,
                 ...{
-                    users
+                    users: _.without(users, getUserFromState(state, action.user))
                 }
             };
         }
 
         case types.TOGGLE_USER_SLEEPING: {
-            const name = action.name;
-            const users = {...state.users};
-            if (name && users[name]) {
-                users[name].sleeping = !users[name].sleeping;
-            }
-            return {
-                ...state,
-                ...{
-                    users
-                }
-            }
-        }
+            const user = action.user;
+            const users = state.users;
+            let mergedUsers = users;
 
-        case types.SET_BREAKING: {
+            if (user && isUserInState(state, user) && !isUserCurrentlyActive(state, user)) {
+                const _user = getUserFromState(state, user);
+                mergedUsers = users.map(stateUser => {
+                    if (stateUser.name === _user.name) {
+                        stateUser.sleeping = !stateUser.sleeping;
+                    }
+                    return stateUser;
+                });
+            }
+
             return {
                 ...state,
                 ...{
-                    breaking: action.breaking
+                    users: [...mergedUsers]
                 }
             }
         }
@@ -69,26 +91,15 @@ const reducer = (state = initial_state, action) => {
             const firstTimeUsingToday = state.activeDate && state.activeDate !== new Date().getDate();
 
 
-            // -- ROTATION --> TODO: BREAK OUT ROTATION AND BREAKING
             let rotation = nextUserIndex === 0 ? (state.rotation + 1) : state.rotation;
             if (firstTimeUsingToday) {
-                rotation = 0;
+                rotation = 1;
             }
-            // <-- ROTATION --
 
-            // -- BREAKING -->
-            let breaking = false;
-            if (state.breaking) {
-                breaking = false;
-            }
-            if (action.breakInterval &&
-                state.rotation !== rotation &&
-                breaking === false) {
-                if (state.rotation > 0 || firstTimeUsingToday) {
-                    breaking = (state.rotation % action.breakInterval) === 0;
-                }
-            }
-            // <-- BREAKING --
+            const breaking = setIsBreaktime(state, {
+                breakInterval: action.breakInterval,
+                rotation,
+            }, firstTimeUsingToday);
 
             return {
                 ...state,
@@ -97,6 +108,15 @@ const reducer = (state = initial_state, action) => {
                     rotation,
                     breaking,
                     activeDate: new Date().getDate(),
+                }
+            }
+        }
+
+        case types.SET_BREAKING: {
+            return {
+                ...state,
+                ...{
+                    breaking: action.breaking
                 }
             }
         }

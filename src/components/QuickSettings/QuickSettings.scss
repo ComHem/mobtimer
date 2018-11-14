@@ -8,8 +8,11 @@
     cursor: pointer;
   }
 
-  pre {
-    text-align: left;
-    font-size: 12pt;
-  }
+}
+pre.json-formatted {
+  position: absolute;
+  left: 10px;
+  top: 120px;
+  text-align: left;
+  font-size: 12pt;
 }
